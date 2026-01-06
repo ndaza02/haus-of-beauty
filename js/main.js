@@ -267,3 +267,16 @@ gsap.from("footer", {
     duration: 1,
     ease: "power3.out"
 });
+
+// ===== STICKY CTA LOGIC =====
+
+const stickyCta = document.getElementById('stickyCta');
+if (stickyCta) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500 && window.innerWidth < 769) {
+            stickyCta.classList.add('show');
+        } else {
+            stickyCta.classList.remove('show');
+        }
+    });
+}
