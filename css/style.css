@@ -20,6 +20,7 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -32,4 +33,219 @@ body {
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+
+    /* Hero title responsive sizing */
+    h1 {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Section headings */
+    h2 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem) !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
+    }
+
+    /* Body text readability */
+    p {
+        font-size: clamp(0.9rem, 3.5vw, 1rem) !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Touch target minimum size */
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Navigation spacing */
+    nav {
+        padding: 0.75rem 1rem !important;
+    }
+
+    nav .flex {
+        gap: 0.5rem !important;
+    }
+
+    /* Hide desktop navigation pills on mobile */
+    nav .hidden.md\\:flex {
+        display: none !important;
+    }
+
+    /* Hero section adjustments */
+    header {
+        min-height: 100vh;
+    }
+
+    .hero-content {
+        padding: 1rem !important;
+        margin-top: 5rem !important;
+    }
+
+    /* Hero cards - better stacking */
+    .hero-card {
+        min-width: 260px !important;
+        padding: 1rem !important;
+    }
+
+    /* Service tags - better wrapping */
+    .flex-wrap {
+        gap: 0.5rem !important;
+    }
+
+    .flex-wrap span {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    /* About section - single column */
+    .lg\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Statistics grid */
+    .grid-cols-2 {
+        gap: 1.5rem !important;
+    }
+
+    .text-5xl {
+        font-size: clamp(2.5rem, 10vw, 3rem) !important;
+    }
+
+    /* How It Works - better spacing */
+    .md\\:grid-cols-4 {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Gallery - single column for better showcase */
+    .md\\:grid-cols-4.gap-4 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* Service cards - single column */
+    .lg\\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Product cards */
+    .product-card {
+        margin-bottom: 2rem;
+    }
+
+    /* Reviews grid */
+    .md\\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Footer adjustments */
+    footer .lg\\:grid-cols-4 {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center;
+    }
+
+    footer .lg\\:col-span-2 {
+        grid-column: span 1 !important;
+    }
+
+    footer .lg\\:justify-end {
+        justify-content: center !important;
+    }
+
+    /* CTA buttons */
+    .flex-wrap.gap-4 {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .flex-wrap.gap-4 button {
+        width: 100%;
+    }
+
+    /* Padding adjustments */
+    section {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .py-20 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .px-6 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* Circular text - smaller on mobile */
+    .circular-text svg {
+        width: 80% !important;
+        height: 80% !important;
+    }
+
+    /* Trending section layout */
+    .lg\\:col-span-6 {
+        order: -1;
+    }
+
+    .lg\\:col-span-3.space-y-8 {
+        margin-bottom: 2rem;
+    }
+
+    /* Search input full width */
+    .md\\:w-80 {
+        width: 100% !important;
+    }
+
+    /* Better image scaling */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    .max-w-\\[1440px\\] {
+        max-width: 100% !important;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .text-5xl {
+        font-size: 2rem !important;
+    }
+
+    button,
+    a {
+        font-size: 0.875rem !important;
+    }
 }
