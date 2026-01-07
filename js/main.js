@@ -194,17 +194,23 @@ gsap.from("#cta h2", {
 });
 
 // CTA buttons pop in
-gsap.from("#cta button", {
-    scrollTrigger: {
-        trigger: "#cta",
-        start: "top 80%",
+gsap.set("#cta button", { opacity: 0, y: 30 }); // Set initial state explicitly
+
+ScrollTrigger.create({
+    trigger: "#cta",
+    start: "top 85%",
+    onEnter: () => {
+        gsap.to("#cta button", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            delay: 0.2,
+            ease: "back.out(1.7)",
+            overwrite: true
+        });
     },
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    delay: 0.3,
-    ease: "back.out(1.7)"
+    once: true
 });
 
 // ===== INTERACTIVE HOVER EFFECTS =====
