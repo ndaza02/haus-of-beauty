@@ -178,18 +178,6 @@ gsap.from(".aspect-square", {
 
 // ===== REVIEWS SECTION =====
 
-// Review cards slide in
-gsap.from(".review-card", {
-    scrollTrigger: {
-        trigger: ".review-card",
-        start: "top 85%",
-    },
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: "power3.out"
-});
 
 // ===== CTA SECTION =====
 
@@ -283,14 +271,17 @@ if (stickyCta) {
 
 // ===== REVIEWS SECTION ANIMATIONS =====
 
-gsap.from(".review-card", {
-    scrollTrigger: {
-        trigger: ".review-card",
-        start: "top 85%",
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1.2,
-    stagger: 0.2,
-    ease: "power4.out"
+// Set initial state to avoid flash (optional, but cleaner if JS loads fast)
+// Note: We use a batch trigger to ensure elements are animated as they come into view
+ScrollTrigger.batch(".review-card", {
+    onEnter: batch => gsap.from(batch, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        overwrite: true
+    }),
+    start: "top 90%",
+    once: true
 });
