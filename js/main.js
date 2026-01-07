@@ -279,10 +279,14 @@ if (stickyCta) {
 
 // Set initial state to avoid flash (optional, but cleaner if JS loads fast)
 // Note: We use a batch trigger to ensure elements are animated as they come into view
+// Set initial state to avoid flash (optional, but cleaner if JS loads fast)
+// Note: We use a batch trigger to ensure elements are animated as they come into view
+gsap.set(".review-card", { opacity: 0, y: 50 }); // Set initial state explicitly
+
 ScrollTrigger.batch(".review-card", {
-    onEnter: batch => gsap.from(batch, {
-        y: 50,
-        opacity: 0,
+    onEnter: batch => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
         duration: 0.8,
         stagger: 0.15,
         ease: "power3.out",
