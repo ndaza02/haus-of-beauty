@@ -280,3 +280,17 @@ if (stickyCta) {
         }
     });
 }
+
+// ===== REVIEWS SECTION ANIMATIONS =====
+
+gsap.from(".review-card", {
+    scrollTrigger: {
+        trigger: ".review-card",
+        start: "top 85%",
+    },
+    y: 100,
+    opacity: 0,
+    duration: 1.2,
+    stagger: 0.2,
+    ease: "power4.out"
+});
