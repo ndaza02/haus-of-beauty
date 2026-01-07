@@ -65,9 +65,9 @@ gsap.to(".circular-text", {
 });
 
 // Trending section title reveal
-gsap.from(".lg\\:col-span-3.space-y-8 h2", {
+gsap.from("#trending-text h2", {
     scrollTrigger: {
-        trigger: ".lg\\:col-span-3.space-y-8",
+        trigger: "#trending-text",
         start: "top 80%",
     },
     x: -50,
@@ -119,9 +119,9 @@ gsap.utils.toArray(".text-5xl.font-bold").forEach((stat) => {
 });
 
 // About section text reveal
-gsap.from(".bg-black.text-white h2", {
+gsap.from("#about h2", {
     scrollTrigger: {
-        trigger: ".bg-black.text-white",
+        trigger: "#about",
         start: "top 75%",
     },
     x: -100,
@@ -130,9 +130,9 @@ gsap.from(".bg-black.text-white h2", {
     ease: "power3.out"
 });
 
-gsap.from(".bg-black.text-white p", {
+gsap.from("#about p", {
     scrollTrigger: {
-        trigger: ".bg-black.text-white",
+        trigger: "#about",
         start: "top 75%",
     },
     y: 30,
@@ -182,9 +182,9 @@ gsap.from(".aspect-square", {
 // ===== CTA SECTION =====
 
 // CTA section zoom in
-gsap.from(".bg-black.text-white h2", {
+gsap.from("#cta h2", {
     scrollTrigger: {
-        trigger: "section.bg-black.text-white:last-of-type",
+        trigger: "#cta",
         start: "top 80%",
     },
     scale: 0.9,
@@ -194,9 +194,9 @@ gsap.from(".bg-black.text-white h2", {
 });
 
 // CTA buttons pop in
-gsap.from(".bg-black.text-white button", {
+gsap.from("#cta button", {
     scrollTrigger: {
-        trigger: "section.bg-black.text-white:last-of-type",
+        trigger: "#cta",
         start: "top 80%",
     },
     y: 30,
