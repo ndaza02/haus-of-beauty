@@ -52,17 +52,7 @@ gsap.to("header img", {
 
 // ===== TRENDING SECTION ANIMATIONS =====
 
-// Circular rotating text speed up on scroll
-gsap.to(".circular-text", {
-    rotation: 360,
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".circular-text",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2
-    }
-});
+
 
 // Trending section title reveal
 gsap.from("#trending-text h2", {
