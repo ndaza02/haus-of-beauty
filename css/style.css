@@ -382,6 +382,49 @@ body {
     filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
 }
 
-.fill-white {
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+
+/* ===== BOOKING MODAL STYLES ===== */
+
+/* Custom Scrollbar for Service List */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Date Picker Scrollbar Hide */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Booking Animation */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-content {
+    animation: slideUpFade 0.4s ease-out;
 }
