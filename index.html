@@ -54,27 +54,28 @@
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
                 <div class="hidden md:flex bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
-                    <a href="#" class="px-5 py-2 bg-white text-black rounded-full font-medium text-sm">Home</a>
+                    <a href="index.html" class="px-5 py-2 bg-white text-black rounded-full font-medium text-sm">Home</a>
                     <a href="shop.html"
-                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition font-serif italic uppercase tracking-widest bg-white/10 rounded-full border border-white/20">The
+                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition font-serif italic uppercase tracking-widest px-4">The
                         Collection</a>
                     <a href="#about"
-                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition">About
-                        us</a>
+                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition">About Us</a>
                 </div>
             </div>
 
-            <div class="text-white font-bold text-xl tracking-tight">Haus Of Beauty</div>
+            <div class="text-white font-bold text-xl tracking-tight font-serif uppercase">Haus Of Beauty</div>
 
             <div class="flex items-center gap-3">
                 <button
-                    class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition">
+                    class="hidden sm:flex w-10 h-10 rounded-full border border-white/20 items-center justify-center text-white hover:bg-white/10 transition">
                     <i data-lucide="search" class="w-4 h-4"></i>
                 </button>
-                <button
-                    class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 transition">
+                <a href="shop.html" id="cartBtn"
+                    class="relative w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 transition">
                     <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                </button>
+                    <span id="cartCount"
+                        class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">0</span>
+                </a>
                 <button
                     class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition">
                     <i data-lucide="user" class="w-4 h-4"></i>
@@ -1020,6 +1021,17 @@
 
     <script src="js/booking.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Update Cart Count from localStorage
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('hausCart')) || [];
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countEl = document.getElementById('cartCount');
+            if (countEl) countEl.innerText = count;
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+        window.addEventListener('storage', updateCartCount);
+    </script>
 </body>
 
 </html>
