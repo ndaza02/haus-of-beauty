@@ -2,106 +2,109 @@
  * Haus of Beauty - Shop & Cart Logic
  */
 
-// PRODUCT DATA (Mapped from price list image)
+// PRODUCT DATA (Categorized by length)
 const products = [
-    // FIX & SUPPLY
+    // SHOULDER (sh)
     {
-        id: 'fs1',
-        name: 'Full Hair Wash',
-        category: 'fix_supply',
-        price: 5,
-        image: 'assets/images/gallery/img-6.jpg',
-        description: 'Professional cleansing wash.'
-    },
-    {
-        id: 'fs2',
-        name: 'Retouch Service',
-        category: 'fix_supply',
-        price: 20,
+        id: 'sh1',
+        name: 'Small Knotless (Sh)',
+        category: 'sh',
+        price: 30,
         image: 'assets/images/gallery/img-1.jpg',
-        description: 'Refresh your style.'
+        description: 'Shoulder length small knotless braids.'
     },
     {
-        id: 'fs3',
-        name: 'Installation & Sew In',
-        category: 'fix_supply',
-        price: 25,
-        image: 'assets/images/gallery/img-5.jpg', // Using the bob/wig image
-        description: 'Expert installation and styling.'
+        id: 'sh2',
+        name: 'Alicia Keys Braids (Sh)',
+        category: 'sh',
+        price: 15,
+        image: 'assets/images/gallery/img-7.jpg',
+        description: 'Shoulder length Alicia Keys inspired braids.'
     },
-    // KNOTLESS BRAIDS (Using Waist length as primary showcase)
+    // BREAST (br)
     {
-        id: 'kb1',
+        id: 'br1',
+        name: 'Medium Knotless (Br)',
+        category: 'br',
+        price: 30,
+        image: 'assets/images/gallery/img-1.jpg',
+        description: 'Breast length medium knotless braids.'
+    },
+    {
+        id: 'br2',
+        name: 'Lemonade Braids (Br)',
+        category: 'br',
+        price: 35,
+        image: 'assets/images/gallery/img-4.jpg',
+        description: 'Breast length side-swept lemonade braids.'
+    },
+    // WAIST (wai)
+    {
+        id: 'wai1',
         name: 'Extra Small Knotless (Wai)',
-        category: 'braids',
+        category: 'wai',
         price: 50,
         image: 'assets/images/gallery/img-2.jpg',
         description: 'Waist length extra small knotless braids.'
     },
     {
-        id: 'kb2',
-        name: 'Medium Knotless (Wai)',
-        category: 'braids',
-        price: 40,
-        image: 'assets/images/gallery/img-1.jpg',
-        description: 'Waist length medium knotless braids.'
-    },
-    {
-        id: 'kb3',
-        name: 'Large Knotless (Wai)',
-        category: 'braids',
-        price: 30,
-        image: 'assets/images/gallery/img-3.jpg',
-        description: 'Waist length large knotless braids.'
-    },
-    // STYLISH BRAIDS
-    {
-        id: 'sb1',
+        id: 'wai2',
         name: 'Boho Braids (Wai)',
-        category: 'braids',
+        category: 'wai',
         price: 45,
         image: 'assets/images/gallery/img-3.jpg',
-        description: 'Bohemian style goddess braids.'
+        description: 'Waist length bohemian goddess braids.'
     },
+    // BUTT (but)
     {
-        id: 'sb2',
-        name: 'Lemonade Braids (Wai)',
-        category: 'braids',
-        price: 40,
-        image: 'assets/images/gallery/img-4.jpg',
-        description: 'Side-swept braided style.'
-    },
-    {
-        id: 'sb3',
-        name: 'Fulani Braids (Wai)',
-        category: 'braids',
-        price: 40,
-        image: 'assets/images/gallery/img-7.jpg',
-        description: 'Traditional patterned braids.'
-    },
-    {
-        id: 'bb1',
-        name: 'Small Box Braids (Wai)',
-        category: 'braids',
-        price: 40,
+        id: 'but1',
+        name: 'Small Box Braids (But)',
+        category: 'but',
+        price: 50,
         image: 'assets/images/gallery/img-1.jpg',
-        description: 'Clean, professional small box braids.'
+        description: 'Butt length classic small box braids.'
     },
     {
-        id: 'sb5',
-        name: 'Alicia Keys Braids (Wai)',
-        category: 'braids',
-        price: 25,
+        id: 'but2',
+        name: 'Medium Knotless (But)',
+        category: 'but',
+        price: 45,
+        image: 'assets/images/gallery/img-2.jpg',
+        description: 'Butt length medium knotless braids.'
+    },
+    // KNEE (knee)
+    {
+        id: 'knee1',
+        name: 'Small Knotless (Knee)',
+        category: 'knee',
+        price: 65,
+        image: 'assets/images/gallery/img-3.jpg',
+        description: 'Knee length small knotless braids.'
+    },
+    {
+        id: 'knee2',
+        name: 'Fulani Braids (Knee)',
+        category: 'knee',
+        price: 65,
         image: 'assets/images/gallery/img-7.jpg',
-        description: 'Inspired geometric braiding patterns.'
+        description: 'Knee length traditional Fulani braids.'
+    },
+    // OTHERS (fix_supply)
+    {
+        id: 'fs1',
+        name: 'Installation & Sew In',
+        category: 'other',
+        price: 25,
+        image: 'assets/images/gallery/img-5.jpg',
+        description: 'Expert wig installation and sewing.'
     },
     {
-        id: 'sb4',
-        name: 'Stylish Cornrows',
-        category: 'braids',
-        price: 20,
-        image: 'assets/images/gallery/img-4.jpg',
-        description: 'Clean, artistic cornrow designs.'
+        id: 'fs2',
+        name: 'Full Hair Wash',
+        category: 'other',
+        price: 5,
+        image: 'assets/images/gallery/img-6.jpg',
+        description: 'Professional cleansing wash.'
     }
 ];
 
