@@ -2,55 +2,106 @@
  * Haus of Beauty - Shop & Cart Logic
  */
 
-// PRODUCT DATA
+// PRODUCT DATA (Mapped from price list image)
 const products = [
+    // FIX & SUPPLY
     {
-        id: 'p1',
-        name: 'The Celeste Lace Front',
-        category: 'wigs',
-        price: 950,
-        image: 'https://images.unsplash.com/photo-1595476104010-b4c172d0c1bd?q=80&w=800&auto=format&fit=crop',
-        description: 'Premium quality HD lace front wig.'
+        id: 'fs1',
+        name: 'Full Hair Wash',
+        category: 'fix_supply',
+        price: 5,
+        image: 'assets/images/gallery/img-6.jpg',
+        description: 'Professional cleansing wash.'
     },
     {
-        id: 'p2',
-        name: 'Goddess Curly Unit',
-        category: 'wigs',
-        price: 850,
-        image: 'https://images.unsplash.com/photo-1627931327116-24ce80a13346?q=80&w=800&auto=format&fit=crop',
-        description: 'Beautiful curly unit for a natural look.'
+        id: 'fs2',
+        name: 'Retouch Service',
+        category: 'fix_supply',
+        price: 20,
+        image: 'assets/images/gallery/img-1.jpg',
+        description: 'Refresh your style.'
     },
     {
-        id: 'p3',
-        name: '22" Double Drawn Bundles',
-        category: 'extensions',
-        price: 350,
-        image: 'https://images.unsplash.com/photo-1519699047748-40baea614fee?q=80&w=800&auto=format&fit=crop',
-        description: 'Thick extensions from top to bottom.'
-    },
-    {
-        id: 'p4',
-        name: 'Lustrous Silk Press Oil',
-        category: 'care',
-        price: 45,
-        image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=800&auto=format&fit=crop',
-        description: 'Nourishing oil for a flawless finish.'
-    },
-    {
-        id: 'p5',
-        name: 'Platinum Blonde Unit',
-        category: 'wigs',
-        price: 1100,
-        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop',
-        description: 'Striking platinum blonde lace front.'
-    },
-    {
-        id: 'p6',
-        name: 'Edge Control Luxe',
-        category: 'care',
+        id: 'fs3',
+        name: 'Installation & Sew In',
+        category: 'fix_supply',
         price: 25,
-        image: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=800&auto=format&fit=crop',
-        description: 'All-day hold for sleek styles.'
+        image: 'assets/images/gallery/img-5.jpg', // Using the bob/wig image
+        description: 'Expert installation and styling.'
+    },
+    // KNOTLESS BRAIDS (Using Waist length as primary showcase)
+    {
+        id: 'kb1',
+        name: 'Extra Small Knotless (Wai)',
+        category: 'braids',
+        price: 50,
+        image: 'assets/images/gallery/img-2.jpg',
+        description: 'Waist length extra small knotless braids.'
+    },
+    {
+        id: 'kb2',
+        name: 'Medium Knotless (Wai)',
+        category: 'braids',
+        price: 40,
+        image: 'assets/images/gallery/img-1.jpg',
+        description: 'Waist length medium knotless braids.'
+    },
+    {
+        id: 'kb3',
+        name: 'Large Knotless (Wai)',
+        category: 'braids',
+        price: 30,
+        image: 'assets/images/gallery/img-3.jpg',
+        description: 'Waist length large knotless braids.'
+    },
+    // STYLISH BRAIDS
+    {
+        id: 'sb1',
+        name: 'Boho Braids (Wai)',
+        category: 'braids',
+        price: 45,
+        image: 'assets/images/gallery/img-3.jpg',
+        description: 'Bohemian style goddess braids.'
+    },
+    {
+        id: 'sb2',
+        name: 'Lemonade Braids (Wai)',
+        category: 'braids',
+        price: 40,
+        image: 'assets/images/gallery/img-4.jpg',
+        description: 'Side-swept braided style.'
+    },
+    {
+        id: 'sb3',
+        name: 'Fulani Braids (Wai)',
+        category: 'braids',
+        price: 40,
+        image: 'assets/images/gallery/img-7.jpg',
+        description: 'Traditional patterned braids.'
+    },
+    {
+        id: 'bb1',
+        name: 'Small Box Braids (Wai)',
+        category: 'braids',
+        price: 40,
+        image: 'assets/images/gallery/img-1.jpg',
+        description: 'Clean, professional small box braids.'
+    },
+    {
+        id: 'sb5',
+        name: 'Alicia Keys Braids (Wai)',
+        category: 'braids',
+        price: 25,
+        image: 'assets/images/gallery/img-7.jpg',
+        description: 'Inspired geometric braiding patterns.'
+    },
+    {
+        id: 'sb4',
+        name: 'Stylish Cornrows',
+        category: 'braids',
+        price: 20,
+        image: 'assets/images/gallery/img-4.jpg',
+        description: 'Clean, artistic cornrow designs.'
     }
 ];
 
