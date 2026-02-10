@@ -10,7 +10,7 @@ const products = [
         name: 'Small Knotless (Sh)',
         category: 'sh',
         price: 30,
-        image: 'assets/images/gallery/img-1.jpg',
+        image: 'assets/images/shop/shop-1.jpg',
         description: 'Shoulder length small knotless braids.'
     },
     {
@@ -18,7 +18,7 @@ const products = [
         name: 'Alicia Keys Braids (Sh)',
         category: 'sh',
         price: 15,
-        image: 'assets/images/gallery/img-7.jpg',
+        image: 'assets/images/shop/shop-2.jpg',
         description: 'Shoulder length Alicia Keys inspired braids.'
     },
     // BREAST (br)
@@ -27,7 +27,7 @@ const products = [
         name: 'Medium Knotless (Br)',
         category: 'br',
         price: 30,
-        image: 'assets/images/gallery/img-1.jpg',
+        image: 'assets/images/shop/shop-3.jpg',
         description: 'Breast length medium knotless braids.'
     },
     {
@@ -35,7 +35,7 @@ const products = [
         name: 'Lemonade Braids (Br)',
         category: 'br',
         price: 35,
-        image: 'assets/images/gallery/img-4.jpg',
+        image: 'assets/images/shop/shop-4.jpg',
         description: 'Breast length side-swept lemonade braids.'
     },
     // WAIST (wai)
@@ -44,7 +44,7 @@ const products = [
         name: 'Extra Small Knotless (Wai)',
         category: 'wai',
         price: 50,
-        image: 'assets/images/gallery/img-2.jpg',
+        image: 'assets/images/shop/shop-5.jpg',
         description: 'Waist length extra small knotless braids.'
     },
     {
@@ -52,7 +52,7 @@ const products = [
         name: 'Boho Braids (Wai)',
         category: 'wai',
         price: 45,
-        image: 'assets/images/gallery/img-3.jpg',
+        image: 'assets/images/shop/shop-6.jpg',
         description: 'Waist length bohemian goddess braids.'
     },
     // BUTT (but)
@@ -61,7 +61,7 @@ const products = [
         name: 'Small Box Braids (But)',
         category: 'but',
         price: 50,
-        image: 'assets/images/gallery/img-1.jpg',
+        image: 'assets/images/shop/shop-7.jpg',
         description: 'Butt length classic small box braids.'
     },
     {
@@ -69,7 +69,7 @@ const products = [
         name: 'Medium Knotless (But)',
         category: 'but',
         price: 45,
-        image: 'assets/images/gallery/img-2.jpg',
+        image: 'assets/images/shop/shop-8.jpg',
         description: 'Butt length medium knotless braids.'
     },
     // KNEE (knee)
@@ -78,7 +78,7 @@ const products = [
         name: 'Small Knotless (Knee)',
         category: 'knee',
         price: 65,
-        image: 'assets/images/gallery/img-3.jpg',
+        image: 'assets/images/shop/shop-9.jpg',
         description: 'Knee length small knotless braids.'
     },
     {
@@ -86,7 +86,7 @@ const products = [
         name: 'Fulani Braids (Knee)',
         category: 'knee',
         price: 65,
-        image: 'assets/images/gallery/img-7.jpg',
+        image: 'assets/images/shop/shop-10.jpg',
         description: 'Knee length traditional Fulani braids.'
     },
     // OTHERS (fix_supply)
@@ -95,7 +95,7 @@ const products = [
         name: 'Installation & Sew In',
         category: 'other',
         price: 25,
-        image: 'assets/images/gallery/img-5.jpg',
+        image: 'assets/images/shop/shop-11.jpg',
         description: 'Expert wig installation and sewing.'
     },
     {
@@ -103,7 +103,7 @@ const products = [
         name: 'Full Hair Wash',
         category: 'other',
         price: 5,
-        image: 'assets/images/gallery/img-6.jpg',
+        image: 'assets/images/shop/shop-12.jpg',
         description: 'Professional cleansing wash.'
     }
 ];
