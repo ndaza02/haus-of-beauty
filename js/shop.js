@@ -4,315 +4,61 @@
 
 // PRODUCT DATA (Categorized by length)
 const products = [
-    // SHOULDER (sh)
     {
         id: 'sh5',
-        name: 'Textured Shoulder Locs',
+        name: 'Lemonade Braids',
         category: 'sh',
         price: 40,
         image: 'assets/images/gallery/img-10.jpg',
-        description: 'Natural look textured locs.'
-    },
-    {
-        id: 'sh6',
-        name: 'Classic Shoulder Box',
-        category: 'sh',
-        price: 30,
-        image: 'assets/images/gallery/img-11.jpg',
-        description: 'Timeless box braids.'
-    },
-    // BREAST (br)
-    {
-        id: 'br1',
-        name: 'Medium Knotless (Br)',
-        category: 'br',
-        price: 30,
-        image: 'assets/images/gallery/img-1.jpg',
-        description: 'Breast length medium knotless braids.'
+        description: 'Luxury shoulder length lemonade braids.'
     },
     {
         id: 'br2',
-        name: 'Lemonade Braids (Br)',
+        name: 'Simple Installation',
         category: 'br',
         price: 35,
         image: 'assets/images/gallery/img-4.jpg',
-        description: 'Breast length side-swept lemonade braids.'
+        description: 'Professional breast length installation.'
     },
     {
         id: 'br3',
-        name: 'Goddess Braids (Br)',
+        name: 'Goddess Braids',
         category: 'br',
         price: 40,
         image: 'assets/images/gallery/img-12.jpg',
-        description: 'Breast length curls and braids mix.'
-    },
-    {
-        id: 'br4',
-        name: 'Fulani Hybrid (Br)',
-        category: 'br',
-        price: 40,
-        image: 'assets/images/gallery/img-13.jpg',
-        description: 'Modern Fulani style.'
-    },
-    {
-        id: 'br5',
-        name: 'Twisted Updo (Br)',
-        category: 'br',
-        price: 35,
-        image: 'assets/images/gallery/img-14.jpg',
-        description: 'Elegant twisted style.'
-    },
-    {
-        id: 'br6',
-        name: 'Signature Braids (Br)',
-        category: 'br',
-        price: 45,
-        image: 'assets/images/gallery/img-15.jpg',
-        description: 'Our signature braiding pattern.'
-    },
-    {
-        id: 'br7',
-        name: 'Boho Bob (Br)',
-        category: 'br',
-        price: 40,
-        image: 'assets/images/gallery/img-16.jpg',
-        description: 'Bohemian style bob.'
-    },
-    // WAIST (wai)
-    {
-        id: 'wai1',
-        name: 'Extra Small Knotless (Wai)',
-        category: 'wai',
-        price: 50,
-        image: 'assets/images/gallery/img-2.jpg',
-        description: 'Waist length extra small knotless braids.'
+        description: 'Exquisite breast length goddess braids.'
     },
     {
         id: 'wai2',
-        name: 'Boho Braids (Wai)',
+        name: 'Installation with Styling',
         category: 'wai',
         price: 45,
         image: 'assets/images/gallery/img-3.jpg',
-        description: 'Waist length bohemian goddess braids.'
-    },
-    {
-        id: 'wai3',
-        name: 'Luxury Cornrows (Wai)',
-        category: 'wai',
-        price: 45,
-        image: 'assets/images/gallery/img-17.jpg',
-        description: 'Intricate cornrow designs.'
-    },
-    {
-        id: 'wai4',
-        name: 'Tribal Braids (Wai)',
-        category: 'wai',
-        price: 50,
-        image: 'assets/images/gallery/img-18.jpg',
-        description: 'Tribal integrated patterns.'
+        description: 'Waist length installation with premium styling.'
     },
     {
         id: 'wai5',
-        name: 'Sleek Pony Braids',
+        name: 'Nicole Unit',
         category: 'wai',
         price: 40,
         image: 'assets/images/gallery/img-19.jpg',
-        description: 'Sleek ponytail style.'
-    },
-    {
-        id: 'wai6',
-        name: 'Jumbo Box Braids (Wai)',
-        category: 'wai',
-        price: 45,
-        image: 'assets/images/gallery/img-20.jpg',
-        description: 'Statement jumbo braids.'
-    },
-    {
-        id: 'wai7',
-        name: 'Micro Braids (Wai)',
-        category: 'wai',
-        price: 60,
-        image: 'assets/images/gallery/img-21.jpg',
-        description: 'Fine micro braids.'
-    },
-    {
-        id: 'wai8',
-        name: 'Ombre Braids (Wai)',
-        category: 'wai',
-        price: 50,
-        image: 'assets/images/gallery/img-22.jpg',
-        description: 'Color blend braids.'
-    },
-    // BUTT (but)
-    {
-        id: 'but1',
-        name: 'Small Box Braids (But)',
-        category: 'but',
-        price: 50,
-        image: 'assets/images/gallery/img-1.jpg',
-        description: 'Butt length classic small box braids.'
-    },
-    {
-        id: 'but2',
-        name: 'Medium Knotless (But)',
-        category: 'but',
-        price: 45,
-        image: 'assets/images/gallery/img-2.jpg',
-        description: 'Butt length medium knotless braids.'
+        description: 'Sleek waist length Nicole unit.'
     },
     {
         id: 'but3',
-        name: 'Goddess Locs (But)',
+        name: 'Small Knotless Kids',
         category: 'but',
         price: 60,
         image: 'assets/images/gallery/img-23.jpg',
-        description: 'Long goddess locs.'
-    },
-    {
-        id: 'but4',
-        name: 'Mermaid Braids (But)',
-        category: 'but',
-        price: 55,
-        image: 'assets/images/gallery/img-24.jpg',
-        description: 'Flowing mermaid style.'
-    },
-    {
-        id: 'but5',
-        name: 'Straight Backs (But)',
-        category: 'but',
-        price: 40,
-        image: 'assets/images/gallery/img-25.jpg',
-        description: 'Classic straight backs.'
-    },
-    {
-        id: 'but6',
-        name: 'Design Cornrows (But)',
-        category: 'but',
-        price: 50,
-        image: 'assets/images/gallery/img-26.jpg',
-        description: 'Artistic pattern cornrows.'
+        description: 'Perfectly sized butt length knotless braids for kids.'
     },
     {
         id: 'but7',
-        name: 'Kinky Twists (But)',
+        name: 'Knotless Braids',
         category: 'but',
         price: 55,
         image: 'assets/images/gallery/img-27.jpg',
-        description: 'Natural texture twists.'
-    },
-    {
-        id: 'but8',
-        name: 'Butterfly Locs (But)',
-        category: 'but',
-        price: 60,
-        image: 'assets/images/gallery/img-28.jpg',
-        description: 'Distressed butterfly locs.'
-    },
-    // KNEE (knee)
-    {
-        id: 'knee1',
-        name: 'Small Knotless (Knee)',
-        category: 'knee',
-        price: 65,
-        image: 'assets/images/gallery/img-3.jpg',
-        description: 'Knee length small knotless braids.'
-    },
-    {
-        id: 'knee2',
-        name: 'Fulani Braids (Knee)',
-        category: 'knee',
-        price: 65,
-        image: 'assets/images/gallery/img-7.jpg',
-        description: 'Knee length traditional Fulani braids.'
-    },
-    {
-        id: 'knee3',
-        name: 'Rapuncel Braids (Knee)',
-        category: 'knee',
-        price: 70,
-        image: 'assets/images/gallery/img-29.jpg',
-        description: 'Extra long flowing braids.'
-    },
-    {
-        id: 'knee4',
-        name: 'Jumbo Twist (Knee)',
-        category: 'knee',
-        price: 65,
-        image: 'assets/images/gallery/img-30.jpg',
-        description: 'Knee length twists.'
-    },
-    {
-        id: 'knee5',
-        name: 'Boho Knotless (Knee)',
-        category: 'knee',
-        price: 75,
-        image: 'assets/images/gallery/img-31.jpg',
-        description: 'Full bohemian look.'
-    },
-    {
-        id: 'knee6',
-        name: 'Senegalese Twists',
-        category: 'knee',
-        price: 70,
-        image: 'assets/images/gallery/img-32.jpg',
-        description: 'Smooth Senegalese twists.'
-    },
-    {
-        id: 'knee7',
-        name: 'Custom Freestyle (Knee)',
-        category: 'knee',
-        price: 80,
-        image: 'assets/images/gallery/img-33.jpg',
-        description: 'Freestyle artistic set.'
-    },
-    // OTHERS (fix_supply)
-    {
-        id: 'fs1',
-        name: 'Installation & Sew In',
-        category: 'other',
-        price: 25,
-        image: 'assets/images/gallery/img-5.jpg',
-        description: 'Expert wig installation and sewing.'
-    },
-    {
-        id: 'fs2',
-        name: 'Full Hair Wash',
-        category: 'other',
-        price: 5,
-        image: 'assets/images/gallery/img-6.jpg',
-        description: 'Professional cleansing wash.'
-    },
-    {
-        id: 'fs3',
-        name: 'Wig Revamp',
-        category: 'other',
-        price: 30,
-        image: 'assets/images/gallery/img-34.jpg',
-        description: 'Restoring old wigs.'
-    },
-    {
-        id: 'fs4',
-        name: 'Custom Wig Construction',
-        category: 'other',
-        price: 100,
-        image: 'assets/images/gallery/img-35.jpg',
-        description: 'Handmade wig construction.'
-    },
-    {
-        id: 'fs5',
-        name: 'Frontal Re-Install',
-        category: 'other',
-        price: 40,
-        image: 'assets/images/gallery/img-36.jpg',
-        description: 'Frontal maintenance.'
-    },
-    {
-        id: 'fs6',
-        name: 'Silk Press & Treatment',
-        category: 'other',
-        price: 45,
-        image: 'assets/images/gallery/img-37.jpg',
-        description: 'Silky smooth finish.'
+        description: 'Classic butt length knotless braids.'
     }
 ];
 
@@ -372,6 +118,15 @@ function renderProducts(filter = 'all') {
     const filtered = filter === 'all'
         ? products
         : products.filter(p => p.category === filter);
+
+    if (filtered.length === 0) {
+        productGrid.innerHTML = `
+            <div class="col-span-full py-20 text-center">
+                <p class="text-gray-400 font-serif italic text-xl tracking-widest uppercase">Coming Soon...</p>
+            </div>
+        `;
+        return;
+    }
 
     filtered.forEach((product, index) => {
         const card = document.createElement('div');
