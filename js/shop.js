@@ -3,41 +3,8 @@
  */
 
 // PRODUCT DATA (Categorized by length)
-// PRODUCT DATA (Categorized by length)
 const products = [
     // SHOULDER (sh)
-    {
-        id: 'sh1',
-        name: 'Small Knotless (Sh)',
-        category: 'sh',
-        price: 30,
-        image: 'assets/images/gallery/img-1.jpg',
-        description: 'Shoulder length small knotless braids.'
-    },
-    {
-        id: 'sh2',
-        name: 'Alicia Keys Braids (Sh)',
-        category: 'sh',
-        price: 15,
-        image: 'assets/images/gallery/img-7.jpg',
-        description: 'Shoulder length Alicia Keys inspired braids.'
-    },
-    {
-        id: 'sh3',
-        name: 'Shoulder Bob Braids',
-        category: 'sh',
-        price: 35,
-        image: 'assets/images/gallery/img-8.jpg',
-        description: 'Chic shoulder-length bob braids.'
-    },
-    {
-        id: 'sh4',
-        name: 'Layered Shoulder Braids',
-        category: 'sh',
-        price: 35,
-        image: 'assets/images/gallery/img-9.jpg',
-        description: 'Layered braiding style.'
-    },
     {
         id: 'sh5',
         name: 'Textured Shoulder Locs',
