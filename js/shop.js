@@ -8,7 +8,7 @@ const products = [
         id: 'sh5',
         name: 'Lemonade Braids',
         category: 'sh',
-        price: 40,
+        price: 30,
         image: 'assets/images/gallery/img-10.jpg',
         description: 'Luxury shoulder length lemonade braids.'
     },
@@ -16,7 +16,7 @@ const products = [
         id: 'br2',
         name: 'Simple Installation',
         category: 'br',
-        price: 35,
+        price: 25,
         image: 'assets/images/gallery/img-4.jpg',
         description: 'Professional breast length installation.'
     },
@@ -24,7 +24,7 @@ const products = [
         id: 'br3',
         name: 'Goddess Braids',
         category: 'br',
-        price: 40,
+        price: 35,
         image: 'assets/images/gallery/img-12.jpg',
         description: 'Exquisite breast length goddess braids.'
     },
@@ -48,7 +48,7 @@ const products = [
         id: 'but3',
         name: 'Small Knotless Kids',
         category: 'but',
-        price: 60,
+        price: 55,
         image: 'assets/images/gallery/img-23.jpg',
         description: 'Perfectly sized butt length knotless braids for kids.'
     },
