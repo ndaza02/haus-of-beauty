@@ -120,11 +120,11 @@
                         Install</span>
                 </div>
 
-                <button
-                    class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition flex items-center gap-2 shadow-lg">
+                <a href="booking.html"
+                    class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-100 transition inline-flex justify-center items-center gap-2 shadow-lg">
                     <i data-lucide="calendar" class="w-5 h-5"></i>
                     Book Your Appointment
-                </button>
+                </a>
             </div>
 
             <div
@@ -211,11 +211,11 @@
                 <h3 class="text-2xl font-medium mb-2">PRO / Knotless Braids</h3>
                 <h4 class="text-xl font-normal text-gray-600 mb-4">Masterful Styling</h4>
                 <div class="text-3xl font-bold mb-8">From $55.00</div>
-                <button
-                    class="w-full py-4 rounded-full border border-black flex items-center justify-center gap-2 hover:bg-black hover:text-white transition group">
+                <a href="booking.html"
+                    class="w-full py-4 rounded-full border border-black inline-flex items-center justify-center gap-2 hover:bg-black hover:text-white transition group">
                     <span>Book Appointment</span>
                     <i data-lucide="calendar" class="w-4 h-4 group-hover:text-white"></i>
-                </button>
+                </a>
 
                 <div class="mt-12">
                     <h2 class="text-4xl font-bold leading-tight">Exclusive <span
@@ -534,10 +534,10 @@
                 to bring your vision to life.
             </p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <button
-                    class="px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition flex items-center gap-2">
+                <a href="booking.html"
+                    class="px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition inline-flex justify-center items-center gap-2 cursor-pointer">
                     <i data-lucide="calendar" class="w-5 h-5"></i> Book Now
-                </button>
+                </a>
                 <button
                     class="px-8 py-4 border border-white rounded-full font-medium hover:bg-white hover:text-black transition flex items-center gap-2">
                     <i data-lucide="phone" class="w-5 h-5"></i> Call Us
@@ -793,296 +793,12 @@
 
     <!-- Sticky CTA for Mobile -->
     <div class="sticky-cta" id="stickyCta">
-        <button class="flex items-center justify-center gap-2">
+        <a href="booking.html"
+            class="flex items-center justify-center gap-2 w-full py-3 bg-white text-black font-semibold rounded-full">
             <i data-lucide="calendar" class="w-5 h-5"></i>
             Book Now
-        </button>
+        </a>
     </div>
-
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
-        aria-modal="true">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="bookingBackdrop">
-        </div>
-
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-                <!-- Modal Panel -->
-                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-0 translate-y-4"
-                    id="bookingPanel">
-
-                    <!-- Close Button -->
-                    <button id="closeModalBtn"
-                        class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition z-20">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-5 h-full lg:min-h-[600px]">
-                        <!-- Left Sidebar (Summary) -->
-                        <div class="lg:col-span-2 bg-black text-white p-4 lg:p-8 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-serif text-lg lg:text-2xl tracking-widest mb-1 text-white/50">BOOKING
-                                </h3>
-                                <h2 class="font-sans text-xl lg:text-3xl font-bold mb-4 lg:mb-8">Summary</h2>
-
-                                <div class="flex lg:block gap-6 lg:gap-0 lg:space-y-6">
-                                    <div>
-                                        <p class="text-xs uppercase tracking-widest text-white/50 mb-1">Service</p>
-                                        <p class="font-serif text-xl" id="summaryService">Select a service</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs uppercase tracking-widest text-white/50 mb-1">Date</p>
-                                        <p class="font-serif text-xl" id="summaryDate">-</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs uppercase tracking-widest text-white/50 mb-1">Time</p>
-                                        <p class="font-serif text-xl" id="summaryTime">-</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 lg:mt-0">
-                                <div class="flex items-center gap-3 text-white/60 text-sm mb-4">
-                                    <i data-lucide="info" class="w-4 h-4"></i>
-                                    <span>No payment required today</span>
-                                </div>
-                                <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                                    <div class="bg-white h-full w-1/3 transition-all duration-500 ease-out"
-                                        id="progressBar"></div>
-                                </div>
-                                <div class="flex justify-between text-xs mt-2 text-white/50">
-                                    <span>Service</span>
-                                    <span>Time</span>
-                                    <span>Details</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Content (Steps) -->
-                        <div class="lg:col-span-3 p-4 lg:p-12 bg-white relative">
-
-                            <!-- Step 1: Service Selection -->
-                            <div id="step1" class="step-content transition-all duration-300">
-                                <h2 class="text-2xl font-serif mb-6">Select Service</h2>
-                                <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                                    <!-- Services will be injected via JS -->
-                                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mt-6 mb-3">
-                                        Braid Services</h4>
-                                    <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                        data-service="Knotless Braids" data-price="55" data-duration="5 hr">
-                                        <div>
-                                            <h4 class="font-bold group-hover:text-black transition">Knotless Braids</h4>
-                                            <p class="text-sm text-gray-500">5 hours • $55.00</p>
-                                        </div>
-                                        <div
-                                            class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-black">
-                                            <div
-                                                class="w-3 h-3 bg-black rounded-full opacity-0 transition group-hover:opacity-100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                        data-service="Small Knotless Kids" data-price="55" data-duration="4 hr">
-                                        <div>
-                                            <h4 class="font-bold group-hover:text-black transition">Small Knotless Kids
-                                            </h4>
-                                            <p class="text-sm text-gray-500">4 hours • $55.00</p>
-                                        </div>
-                                        <div
-                                            class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-black">
-                                            <div
-                                                class="w-3 h-3 bg-black rounded-full opacity-0 transition group-hover:opacity-100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                        data-service="Goddess Braids" data-price="35" data-duration="4 hr">
-                                        <div>
-                                            <h4 class="font-bold group-hover:text-black transition">Goddess Braids</h4>
-                                            <p class="text-sm text-gray-500">4 hours • $35.00</p>
-                                        </div>
-                                        <div
-                                            class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-black">
-                                            <div
-                                                class="w-3 h-3 bg-black rounded-full opacity-0 transition group-hover:opacity-100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                        data-service="Lemonade Braids" data-price="30" data-duration="3 hr">
-                                        <div>
-                                            <h4 class="font-bold group-hover:text-black transition">Lemonade Braids</h4>
-                                            <p class="text-sm text-gray-500">3 hours • $30.00</p>
-                                        </div>
-                                        <div
-                                            class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-black">
-                                            <div
-                                                class="w-3 h-3 bg-black rounded-full opacity-0 transition group-hover:opacity-100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                        data-service="Installation & Styling" data-price="45" data-duration="3 hr">
-                                        <div>
-                                            <h4 class="font-bold group-hover:text-black transition">Installation &
-                                                Styling</h4>
-                                            <p class="text-sm text-gray-500">3 hours • $45.00</p>
-                                        </div>
-                                        <div
-                                            class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-black">
-                                            <div
-                                                class="w-3 h-3 bg-black rounded-full opacity-0 transition group-hover:opacity-100">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mt-6 mb-3">
-                                        General Services</h4>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Wash" data-price="5" data-duration="30 min">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Wash
-                                                </h4>
-                                                <p class="text-xs text-gray-500">$5.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Wash Out" data-price="10" data-duration="45 min">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Wash Out
-                                                </h4>
-                                                <p class="text-xs text-gray-500">$10.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Retouch" data-price="20" data-duration="1 hr">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Retouch
-                                                </h4>
-                                                <p class="text-xs text-gray-500">$20.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Retouch & Gel Up" data-price="30" data-duration="1.5 hr">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Retouch
-                                                    & Gel Up</h4>
-                                                <p class="text-xs text-gray-500">$30.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Blow Out" data-price="15" data-duration="45 min">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Blow Out
-                                                </h4>
-                                                <p class="text-xs text-gray-500">$15.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Installation" data-price="25" data-duration="2 hr">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">
-                                                    Installation</h4>
-                                                <p class="text-xs text-gray-500">$25.00</p>
-                                            </div>
-                                        </div>
-                                        <div class="service-option p-4 border border-gray-200 rounded-2xl hover:border-black cursor-pointer transition flex justify-between items-center group"
-                                            data-service="Sew In" data-price="20" data-duration="2 hr">
-                                            <div>
-                                                <h4 class="font-bold group-hover:text-black transition text-sm">Sew In
-                                                </h4>
-                                                <p class="text-xs text-gray-500">$20.00</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 2: Date & Time -->
-                            <div id="step2" class="step-content hidden transition-all duration-300">
-                                <h2 class="text-2xl font-serif mb-6">Choose Date & Time</h2>
-
-                                <!-- Date Picker (Simplified) -->
-                                <div class="mb-8">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Month</label>
-                                    <div class="flex gap-2 overflow-x-auto pb-4 hide-scrollbar" id="dateContainer">
-                                        <!-- Dates injected via JS -->
-                                    </div>
-                                </div>
-
-                                <!-- Time Slots -->
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Available Slots</label>
-                                    <div id="timeSlotsGrid" class="grid grid-cols-3 gap-3">
-                                        <!-- Times injected via JS -->
-                                        <div class="col-span-3 text-center text-gray-400 py-8 text-sm">Select a date
-                                            first</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 3: Details -->
-                            <div id="step3" class="step-content hidden transition-all duration-300">
-                                <h2 class="text-2xl font-serif mb-6">Your Details</h2>
-                                <form id="bookingForm" class="space-y-4">
-                                    <div>
-                                        <label class="block text-sm font-bold mb-2">Full Name</label>
-                                        <input type="text" id="clientName" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-black focus:outline-none transition">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold mb-2">Phone Number</label>
-                                        <input type="tel" id="clientPhone" required
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-black focus:outline-none transition"
-                                            placeholder="+263 ...">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-bold mb-2">Email (Optional)</label>
-                                        <input type="email" id="clientEmail"
-                                            class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-black focus:outline-none transition">
-                                    </div>
-                                </form>
-                            </div>
-
-                            <!-- Step 4: Success -->
-                            <div id="stepSuccess"
-                                class="step-content hidden transition-all duration-300 text-center h-full flex flex-col justify-center items-center">
-                                <div
-                                    class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 mx-auto">
-                                    <i data-lucide="check" class="w-10 h-10"></i>
-                                </div>
-                                <h2 class="text-3xl font-serif mb-4">Top Tier!</h2>
-                                <p class="text-gray-500 mb-8 max-w-sm mx-auto">Your appointment has been requested
-                                    successfully. We'll see you soon at Haus Of Beauty.</p>
-                                <button id="closeSuccessBtn"
-                                    class="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition">
-                                    Close & Return Home
-                                </button>
-                            </div>
-
-                            <!-- Navigation Buttons -->
-                            <div class="absolute bottom-8 left-8 right-8 flex justify-between pt-6 border-t border-gray-100"
-                                id="modalButtons">
-                                <button id="backBtn"
-                                    class="text-gray-400 hover:text-black transition flex items-center gap-2 hidden">
-                                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
-                                </button>
-                                <button id="nextBtn"
-                                    class="ml-auto bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
-                                    Next Step <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/booking.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Update Cart Count from localStorage
