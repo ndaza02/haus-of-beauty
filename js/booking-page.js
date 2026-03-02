@@ -102,9 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!target) return;
         target.classList.remove('hidden');
 
-        gsap.from(target.children, {
-            y: 20, opacity: 0, duration: 0.4, stagger: 0.1, ease: "power2.out"
-        });
+        gsap.fromTo(target.children,
+            { y: 20, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" }
+        );
 
         currentStep = (typeof step === 'number') ? step : currentStep;
         updateSidebar();
