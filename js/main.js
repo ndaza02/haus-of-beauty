@@ -6,6 +6,44 @@ lucide.createIcons();
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
 
+// ===== LOADER ANIMATION =====
+const loader = document.getElementById('loader');
+if (loader) {
+    const loaderText = document.querySelector('.loader-text');
+    const text = loaderText.textContent;
+    loaderText.innerHTML = text.split('').map(letter => `<span class="letter">${letter}</span>`).join('');
+
+    gsap.set('.letter', { opacity: 0, y: 20 });
+    gsap.to('.letter', {
+        opacity: 1,
+        y: 0,
+        duration: 0.1,
+        stagger: 0.05,
+        ease: "power2.out",
+        onComplete: () => {
+            setTimeout(() => {
+                gsap.to(loader, {
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        loader.style.display = 'none';
+                    }
+                });
+            }, 1000);
+        }
+    });
+}
+
+// ===== MOBILE MENU =====
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+
 // ===== HERO SECTION ANIMATIONS =====
 
 // Navbar slide down
@@ -17,7 +55,7 @@ gsap.from("#navbar", {
 });
 
 // Hero content stagger animation
-gsap.from(".hero-content > *", {
+gsap.from(".hero-content > h1, .hero-content > p", {
     y: 60,
     opacity: 0,
     duration: 1,
