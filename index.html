@@ -1,809 +1,1344 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haus Of Beauty - Luxury Beauty Services</title>
-
+    <title>Haus Of Beauty | Premium Hair Braiding & Styling</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Bodoni Moda"', 'serif'],
-                        script: ['"Great Vibes"', 'cursive'],
-                    },
                     colors: {
                         brand: {
-                            dark: '#000000',
-                            light: '#ffffff',
-                            accent: '#f5f5f5',
-                            gray: '#e5e5e5',
-                            charcoal: '#2d2d2d'
+                            bg: '#FFFFFF',
+                            surface: '#F9F9F9',
+                            elevated: '#F3F3F3',
+                            gold: '#B8860B',
+                            text: '#110F0E',
+                            muted: '#666666',
+                            border: '#E5E5E5',
                         }
+                    },
+                    fontFamily: {
+                        heading: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="antialiased overflow-x-hidden">
+<body class="overflow-x-hidden">
 
     <!-- Loader -->
-    <div id="loader" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
-        <div class="loader-content text-center relative">
-            <!-- Floating Hearts -->
-            <div class="hearts absolute inset-0 pointer-events-none">
-                <i data-lucide="heart" class="floating-heart floating-heart-1"></i>
-                <i data-lucide="heart" class="floating-heart floating-heart-2"></i>
-                <i data-lucide="heart" class="floating-heart floating-heart-3"></i>
-                <i data-lucide="heart" class="floating-heart floating-heart-4"></i>
-                <i data-lucide="heart" class="floating-heart floating-heart-5"></i>
-            </div>
-            <h1 class="loader-text text-4xl md:text-6xl font-script mb-4 text-black drop-shadow-lg">
-                Hey Sweeties! Let's Glow You Up!
-            </h1>
+    <div id="loader" class="fixed inset-0 z-[60] bg-white flex items-center justify-center">
+        <div class="loader-content w-full max-w-2xl px-8">
+            <img src="assets/images/loader-splash.jpg" alt="Welcome to Haus Of Beauty Salon"
+                class="loader-image w-full h-auto opacity-0 scale-95 transition-all duration-700">
         </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 px-6 py-4 transition-all duration-300" id="navbar">
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed w-full z-50 px-6 py-4 bg-white/80 backdrop-blur-md border-b border-brand-border transition-all duration-300">
         <div class="flex justify-between items-center max-w-[1440px] mx-auto">
-            <div class="flex items-center gap-2">
-                <button id="mobileMenuBtn" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                </button>
-                <div class="hidden md:flex bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
-                    <a href="index.html" class="px-5 py-2 bg-white text-black rounded-full font-medium text-sm">Home</a>
-                    <a href="shop.html"
-                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition font-serif italic uppercase tracking-widest px-4">The
-                        Collection</a>
-                    <a href="#about"
-                        class="px-5 py-2 text-white/80 hover:text-white font-medium text-sm transition">About Us</a>
-                </div>
+            <button id="mobileMenuBtn"
+                class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text hover:border-brand-gold transition">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+            <div class="text-xl md:text-2xl tracking-[0.2em] font-heading font-medium text-brand-text uppercase">Haus Of
+                Beauty
             </div>
-
-            <div class="text-white font-bold text-xl tracking-tight font-serif uppercase">Haus Of Beauty</div>
-
-            <div class="flex items-center gap-3">
-                <button
-                    class="hidden sm:flex w-10 h-10 rounded-full border border-white/20 items-center justify-center text-white hover:bg-white/10 transition">
-                    <i data-lucide="search" class="w-4 h-4"></i>
-                </button>
-                <a href="shop.html" id="cartBtn"
-                    class="relative w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-100 transition">
-                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                    <span id="cartCount"
-                        class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">0</span>
-                </a>
-                <button
-                    class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition">
-                    <i data-lucide="user" class="w-4 h-4"></i>
-                </button>
-            </div>
+            <a href="booking.html" class="btn-primary text-xs px-6 py-3 hidden sm:inline-flex">Book Now</a>
+            <a href="booking.html"
+                class="sm:hidden w-10 h-10 rounded-full bg-brand-gold text-brand-bg flex items-center justify-center">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+            </a>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden fixed top-16 left-0 right-0 bg-black text-white p-6 z-40 md:hidden">
-        <a href="index.html" class="block py-2 text-white hover:text-gray-300">Home</a>
-        <a href="shop.html" class="block py-2 text-white hover:text-gray-300">The Collection</a>
-        <a href="#about" class="block py-2 text-white hover:text-gray-300">About Us</a>
+    <div id="mobileMenu"
+        class="hidden fixed inset-0 bg-brand-bg/95 backdrop-blur-xl z-[55] flex flex-col items-center justify-center gap-8">
+        <button id="mobileMenuClose"
+            class="absolute top-6 right-6 w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <a href="index.html" class="text-2xl font-heading text-brand-text hover:text-brand-gold transition">Home</a>
+        <a href="#services" class="text-2xl font-heading text-brand-text hover:text-brand-gold transition"
+            onclick="closeMobileMenu()">Services</a>
+        <a href="#work" class="text-2xl font-heading text-brand-text hover:text-brand-gold transition"
+            onclick="closeMobileMenu()">Gallery</a>
+        <a href="shop.html" class="text-2xl font-heading text-brand-text hover:text-brand-gold transition">Bundles</a>
+        <a href="#faq" class="text-2xl font-heading text-brand-text hover:text-brand-gold transition"
+            onclick="closeMobileMenu()">FAQs</a>
+        <a href="booking.html" class="btn-primary mt-4">Book Now</a>
     </div>
 
-    <header class="relative w-full h-screen overflow-hidden">
-        <div class="absolute inset-0">
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0" id="hero-bg">
             <img src="assets/images/hero-bg-2.jpg" alt="Haus Of Beauty Hero"
-                class="w-full h-full object-cover object-center opacity-90">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+                class="w-full h-full object-cover opacity-50 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40"></div>
         </div>
 
-        <div class="relative z-10 h-full max-w-[1440px] mx-auto px-6 flex flex-col justify-center">
-
-            <div class="max-w-2xl mt-20 hero-content">
-                <h1 class="text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-6">
-                    Elevate Your Style with Expert Braids & <span class="text-white/90">Luxury Wigs</span>
+        <div
+            class="relative z-10 w-full max-w-[1440px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-32 pb-20">
+            <div class="hero-content">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-muted mb-6 block font-sans">Premium Hair
+                    Braiding & Styling</span>
+                <h1
+                    class="text-4xl md:text-6xl lg:text-7xl font-heading font-medium text-brand-text leading-[1.1] mb-6 tracking-tight">
+                    Elevate Your Style with Expert Braids & Luxury Wigs
                 </h1>
-                <p class="text-white/80 text-base md:text-lg max-w-lg mb-10 leading-relaxed">
-                    Experience the artistry of Knotless Braids, Bohemian Twists, and Flawless Wig Installations at Haus
-                    Of Beauty.
+                <p class="text-base md:text-lg text-brand-muted max-w-lg mb-10 leading-relaxed font-light">
+                    For clients who value precision, perfection, and professionalism. Experience the artistry at Haus Of
+                    Beauty.
                 </p>
-
-                <a href="booking.html"
-                    class="px-8 py-4 bg-white text-black border-2 border-black rounded-full font-semibold hover:bg-gray-100 transition inline-flex justify-center items-center gap-2 shadow-lg">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
-                    Book Your Appointment
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="booking.html" class="btn-primary justify-center">
+                        Book an appointment <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="shop.html" class="btn-secondary justify-center">Purchase Bundles</a>
+                </div>
+                <div
+                    class="mt-12 text-xs text-brand-muted tracking-[0.15em] uppercase flex items-center gap-3 font-sans">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                    <p>Mon – Sat: 8am – 6pm <span class="mx-2 opacity-30">|</span> Sun: Closed</p>
+                </div>
             </div>
-
-            <div
-                class="absolute bottom-10 right-0 w-full md:w-auto md:right-10 hidden md:flex gap-4 overflow-x-auto px-6 md:px-0 hide-scrollbar pb-4 md:pb-0">
-
-                <div class="glass-card min-w-[280px] p-4 rounded-2xl flex items-center gap-4 hero-card">
-                    <img src="assets/images/gallery/img-27.jpg" class="w-20 h-20 rounded-xl object-cover" alt="Braids">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h3 class="text-white font-semibold">Knotless Braids</h3>
-                            <button
-                                class="bg-white text-black rounded-full p-1 w-6 h-6 flex items-center justify-center">
-                                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                            </button>
+            <div class="hidden lg:block">
+                <div class="relative">
+                    <img src="assets/images/gallery/img-27.jpg"
+                        class="w-full aspect-[3/4] object-cover rounded-2xl shadow-2xl" alt="Featured Style">
+                    <div
+                        class="absolute bottom-6 left-6 right-6 bg-brand-bg/80 backdrop-blur-md rounded-xl p-4 border border-brand-border">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-brand-text font-heading text-lg">Knotless Braids</h3>
+                                <p class="text-brand-muted text-xs">Precision & Style</p>
+                            </div>
+                            <a href="booking.html"
+                                class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center text-brand-bg">
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </a>
                         </div>
-                        <p class="text-white/60 text-xs">Precision & Style</p>
                     </div>
                 </div>
-
-                <div class="glass-card min-w-[280px] p-4 rounded-2xl flex items-center gap-4 hero-card">
-                    <img src="assets/images/gallery/img-19.jpg" class="w-20 h-20 rounded-xl object-cover" alt="Wig">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h3 class="text-white font-semibold">Nicole Unit</h3>
-                            <button
-                                class="bg-white text-black rounded-full p-1 w-6 h-6 flex items-center justify-center">
-                                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
-                            </button>
-                        </div>
-                        <p class="text-white/60 text-xs">Flawless Installation</p>
-                    </div>
-                </div>
-
             </div>
-
-
         </div>
     </header>
 
-    <section class="py-20 px-6 max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <!-- Booking Policy Section -->
+    <section id="policies" class="py-24 md:py-32 px-6 max-w-[90rem] mx-auto">
+        <div class="mb-16 text-center gs-reveal">
+            <span class="text-xs uppercase tracking-[0.2em] text-brand-muted block mb-3 font-sans">Please read before
+                booking</span>
+            <h2 class="text-4xl md:text-5xl font-heading font-medium">Booking Policy</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-14">
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-brand-muted"></i> Location
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> We are based in
+                        Bulawayo.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> 25 Joshua Mqabuko,
+                        Qatha Lodge.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> The exact
+                        directions will be sent when you confirm your appointment.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-5 h-5 text-brand-muted"></i> Slot Availability
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Book in advance to
+                        avoid disappointment.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Cancellations will
+                        be posted via Instagram story.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="credit-card" class="w-5 h-5 text-brand-muted"></i> Deposits & Payment
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> A non-refundable
+                        deposit is required to secure your appointment.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Remaining balance
+                        in cash or EcoCash.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="clock" class="w-5 h-5 text-brand-muted"></i> Cancellations
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> 48+ hours notice
+                        required to reschedule.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Less than 48 hours
+                        forfeits deposit.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> No-shows will be
+                        charged in full.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="alert-circle" class="w-5 h-5 text-brand-muted"></i> Late Policy
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Arriving more than
+                        30 minutes late may result in cancellation.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> If running late,
+                        please let us know ASAP.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="users" class="w-5 h-5 text-brand-muted"></i> Appointments
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> No plus 1's allowed
+                        at your appointment.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Children allowed
+                        only if receiving services.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-brand-muted"></i> Hair Prep
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Arrive with clean,
+                        detangled hair without oils.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Blowdries are
+                        included in our services.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Provide your own
+                        bundles for certain styles.</li>
+                </ul>
+            </div>
+            <div class="gs-reveal border-t border-brand-border pt-6 group">
+                <h3
+                    class="text-xl mb-4 font-heading text-brand-text group-hover:text-brand-gold transition-colors flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-brand-muted"></i> Refunds & Care
+                </h3>
+                <ul class="text-sm text-brand-muted space-y-3 font-light leading-relaxed">
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Deposits are
+                        strictly non-refundable.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> Contact us within
+                        48 hours for any braid issues.</li>
+                    <li class="flex items-start gap-2"><span class="text-brand-border mt-1">•</span> We are not
+                        responsible for damage due to improper aftercare.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-            <div class="lg:col-span-3 space-y-8" id="trending-text">
-                <div>
-                    <h2 class="text-4xl font-bold leading-tight mb-4">Book Your Next <br>Iconic Look</h2>
-                    <p class="text-gray-500 text-sm">From Stitch Braids to Bohemian Twists</p>
-                </div>
+    <!-- Services Section - Accordion Style -->
+    <section id="services" class="py-24 md:py-32 bg-brand-surface px-6 border-y border-brand-border">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 gs-reveal">
+                <h2 class="text-4xl md:text-5xl font-heading font-medium mb-4">Our Services</h2>
+                <p class="text-brand-muted font-light max-w-2xl mx-auto text-sm">Professional hair braiding services.
+                    Each booking includes a consultation for your perfect look.</p>
+            </div>
 
-                <div class="flex gap-4">
-                    <button
-                        class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">
-                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                    </button>
-                    <button
-                        class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800">
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <div class="flex gap-4">
-                    <img src="assets/images/gallery/img-1.jpg"
-                        class="w-24 h-32 rounded-full object-cover border-4 border-white shadow-lg" alt="Thumbnail 1">
-                    <img src="assets/images/gallery/img-2.jpg"
-                        class="w-24 h-32 rounded-full object-cover border-4 border-white shadow-lg translate-y-6"
-                        alt="Thumbnail 2">
+            <!-- Search Bar -->
+            <div class="max-w-lg mx-auto mb-12 gs-reveal">
+                <div class="relative">
+                    <i data-lucide="search"
+                        class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-brand-muted"></i>
+                    <input type="text" id="serviceSearch" placeholder="Search services..."
+                        class="w-full py-3 pl-11 pr-4 bg-brand-elevated border border-brand-border rounded-lg text-sm text-brand-text placeholder-brand-muted focus:outline-none focus:border-brand-gold transition">
                 </div>
             </div>
 
-            <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
-                <div class="flex gap-3 mb-12 flex-wrap justify-center">
-                    <button class="px-6 py-2 bg-black text-white rounded-full text-sm font-medium">Knotless</button>
-                    <button
-                        class="px-6 py-2 bg-transparent border border-gray-300 hover:border-black rounded-full text-sm font-medium transition">Twists</button>
-                    <button
-                        class="px-6 py-2 bg-transparent border border-gray-300 hover:border-black rounded-full text-sm font-medium transition">Cornrows</button>
-                    <button
-                        class="px-6 py-2 bg-transparent border border-gray-300 hover:border-black rounded-full text-sm font-medium transition">Wigs</button>
-                </div>
+            <!-- Service Accordion -->
+<!-- Service Accordion -->
+<div class="space-y-2 gs-reveal" id="serviceAccordion">
 
-
+    <!-- Category: Knotless Braids -->
+    <div class="svc-category" data-category="knotless">
+        <button
+            class="svc-category-btn w-full flex justify-between items-center py-5 px-6 border border-brand-border rounded-lg hover:border-brand-gold/50 transition-all">
+            <div class="flex items-baseline gap-3">
+                <h3 class="text-xl font-heading font-medium text-brand-text">Knotless Braids</h3>
+                <span class="text-xs text-brand-muted">(4 services)</span>
             </div>
+            <i data-lucide="chevron-down"
+                class="svc-chevron w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+        </button>
+        <div class="svc-category-content">
+            <div class="overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 pb-2">
 
-            <div class="lg:col-span-3 flex flex-col justify-center">
-                <h3 class="text-2xl font-medium mb-2">PRO / Knotless Braids</h3>
-                <h4 class="text-xl font-normal text-gray-600 mb-4">Masterful Styling</h4>
-                <div class="text-3xl font-bold mb-8">From $55.00</div>
-                <a href="booking.html"
-                    class="w-full py-4 rounded-full border border-black inline-flex items-center justify-center gap-2 hover:bg-black hover:text-white transition group">
-                    <span>Book Appointment</span>
-                    <i data-lucide="calendar" class="w-4 h-4 group-hover:text-white"></i>
-                </a>
+                    <!-- Knotless Extra Small -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Knotless Extra Small</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $35</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">8-10 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$50</td>
+                                    <td class="py-1.5 text-right">10-12 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">12 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$70</td>
+                                    <td class="py-1.5 text-right">24 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
 
-                <div class="mt-12">
-                    <h2 class="text-4xl font-bold leading-tight">Exclusive <span
-                            class="font-bold">Hair</span><br>Transformation Awaits</h2>
-                    <button
-                        class="mt-6 px-6 py-3 border border-black rounded-full flex items-center gap-2 hover:bg-black hover:text-white transition w-max">
-                        More Services <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                    </button>
+                    <!-- Knotless Small -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Knotless Small</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $30</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">6 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">6 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$55</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">12 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Knotless Medium (Popular) -->
+                    <div class="svc-card card p-5 border-brand-gold/60 relative hover:border-brand-gold transition-all">
+                        <span
+                            class="absolute -top-2.5 right-4 bg-brand-gold text-brand-bg text-[10px] font-semibold px-3 py-0.5 rounded-full uppercase tracking-wider">Popular</span>
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Knotless Medium</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $25</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$25</td>
+                                    <td class="py-1.5 text-right">2-3 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">2-3 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">5 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">5-7 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$55</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Knotless Large -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Knotless Large</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $20</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$20</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$25</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">1-2 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">1-2 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Box Braids -->
+    <div class="svc-category" data-category="boxbraids">
+        <button
+            class="svc-category-btn w-full flex justify-between items-center py-5 px-6 border border-brand-border rounded-lg hover:border-brand-gold/50 transition-all">
+            <div class="flex items-baseline gap-3">
+                <h3 class="text-xl font-heading font-medium text-brand-text">Box Braids</h3>
+                <span class="text-xs text-brand-muted">(3 services)</span>
+            </div>
+            <i data-lucide="chevron-down"
+                class="svc-chevron w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+        </button>
+        <div class="svc-category-content">
+            <div class="overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 pb-2">
+
+                    <!-- Box Braid Extra Small -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Box Braid Extra Small</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $30</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">5 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">5 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">6-8 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$50</td>
+                                    <td class="py-1.5 text-right">6-8 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">10-12 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Box Braid Medium -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Box Braid Medium</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $25</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$25</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">5-7 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$50</td>
+                                    <td class="py-1.5 text-right">8-10 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Box Braid Large -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Box Braid Large</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $20</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$20</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$25</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category: Stylish Braids -->
+    <div class="svc-category" data-category="stylish">
+        <button
+            class="svc-category-btn w-full flex justify-between items-center py-5 px-6 border border-brand-border rounded-lg hover:border-brand-gold/50 transition-all">
+            <div class="flex items-baseline gap-3">
+                <h3 class="text-xl font-heading font-medium text-brand-text">Stylish Braids</h3>
+                <span class="text-xs text-brand-muted">(7 services)</span>
+            </div>
+            <i data-lucide="chevron-down"
+                class="svc-chevron w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+        </button>
+        <div class="svc-category-content">
+            <div class="overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 pb-2">
+
+                    <!-- Lemonade Braids -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Lemonade Braids</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $30</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">2 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$55</td>
+                                    <td class="py-1.5 text-right">2-3 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Fulani Braids -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Fulani Braids</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $30</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$55</td>
+                                    <td class="py-1.5 text-right">4-6 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Alicia Keys -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Alicia Keys</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $15</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$15</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$20</td>
+                                    <td class="py-1.5 text-right">1 hr</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$25</td>
+                                    <td class="py-1.5 text-right">2 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">2-3 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$35</td>
+                                    <td class="py-1.5 text-right">6 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Bantu Knots -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Bantu Knots</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $15</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$15</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$20</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">2-3 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">6 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$60</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Invisible Locks -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Invisible Locks</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $15</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$15</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$20</td>
+                                    <td class="py-1.5 text-right">1h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">3 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">5 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$60</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Boho & Goddess Braids -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Boho &amp; Goddess Braids</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $40</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">2 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">2 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$55</td>
+                                    <td class="py-1.5 text-right">6 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                    <!-- Butterfly Braids -->
+                    <div class="svc-card card p-5 hover:border-brand-gold/60 transition-all">
+                        <h4 class="font-heading text-lg font-medium text-brand-text mb-1">Butterfly Braids</h4>
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-xl font-heading text-brand-gold">from $30</span>
+                        </div>
+                        <table class="w-full text-xs text-brand-muted border-collapse">
+                            <thead>
+                                <tr class="border-b border-brand-border">
+                                    <th class="py-1.5 text-left font-medium text-brand-text">Length</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Price</th>
+                                    <th class="py-1.5 text-right font-medium text-brand-text">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Shoulder</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$30</td>
+                                    <td class="py-1.5 text-right">2h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Bra</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$40</td>
+                                    <td class="py-1.5 text-right">2h 30min</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Waist</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$45</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr class="border-b border-brand-border/50">
+                                    <td class="py-1.5">Butt</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$50</td>
+                                    <td class="py-1.5 text-right">3-4 hrs</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1.5">Knee</td>
+                                    <td class="py-1.5 text-right text-brand-gold font-medium">$65</td>
+                                    <td class="py-1.5 text-right">6-8 hrs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a href="booking.html"
+                            class="block w-full py-2.5 mt-4 text-center text-xs font-medium border border-brand-border rounded-lg text-brand-text hover:border-brand-gold hover:text-brand-gold transition">Book
+                            Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Work (Portfolio Gallery) -->
+    <section id="work" class="py-24 md:py-32 px-4 max-w-[100rem] mx-auto">
+        <div class="flex justify-between items-end mb-12 px-2 gs-reveal">
+            <div>
+                <span class="text-xs uppercase tracking-[0.2em] text-brand-muted block mb-3 font-sans">Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium">Our Work</h2>
+            </div>
+            <a href="#"
+                class="hidden md:flex text-xs uppercase tracking-[0.2em] text-brand-muted hover:text-brand-gold transition-colors items-center gap-2 group font-sans">
+                Follow Instagram <i data-lucide="arrow-right"
+                    class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 gs-reveal">
+            <div
+                class="portfolio-item aspect-[4/5] bg-brand-surface group relative overflow-hidden rounded-lg cursor-pointer">
+                <img src="assets/images/gallery/img-10.jpg" class="object-cover w-full h-full" alt="Knotless Braids">
+                <div
+                    class="overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5">
+                    <span class="text-brand-text font-medium tracking-wide text-lg font-heading">Knotless Braids</span>
+                    <span class="text-brand-muted text-xs uppercase tracking-widest mt-1">Braids</span>
+                </div>
+            </div>
+            <div
+                class="portfolio-item aspect-[4/5] bg-brand-surface group relative overflow-hidden rounded-lg cursor-pointer">
+                <img src="assets/images/gallery/img-12.jpg" class="object-cover w-full h-full" alt="Goddess Braids">
+                <div
+                    class="overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5">
+                    <span class="text-brand-text font-medium tracking-wide text-lg font-heading">Goddess Braids</span>
+                    <span class="text-brand-muted text-xs uppercase tracking-widest mt-1">Braids</span>
+                </div>
+            </div>
+            <div
+                class="portfolio-item aspect-[4/5] bg-brand-surface group relative overflow-hidden rounded-lg cursor-pointer">
+                <img src="assets/images/gallery/img-3.jpg" class="object-cover w-full h-full" alt="Wig Installation">
+                <div
+                    class="overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5">
+                    <span class="text-brand-text font-medium tracking-wide text-lg font-heading">Wig Installation</span>
+                    <span class="text-brand-muted text-xs uppercase tracking-widest mt-1">Wigs</span>
+                </div>
+            </div>
+            <div
+                class="portfolio-item aspect-[4/5] bg-brand-surface group relative overflow-hidden rounded-lg cursor-pointer">
+                <img src="assets/images/gallery/img-5.jpg" class="object-cover w-full h-full" alt="Boho Twists">
+                <div
+                    class="overlay absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-5">
+                    <span class="text-brand-text font-medium tracking-wide text-lg font-heading">Boho Twists</span>
+                    <span class="text-brand-muted text-xs uppercase tracking-widest mt-1">Extensions</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-10 md:hidden">
+            <a href="#"
+                class="text-xs uppercase tracking-[0.2em] text-brand-muted hover:text-brand-gold transition-colors border-b border-brand-border pb-1">See
+                more on Instagram</a>
+        </div>
+    </section>
+
+    <!-- Client Reviews Section -->
+    <section id="reviews" class="py-24 md:py-32 bg-brand-surface overflow-hidden border-y border-brand-border">
+        <div class="max-w-[90rem] mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-4 gs-reveal">
+                    <span
+                        class="text-xs uppercase tracking-[0.2em] text-brand-muted block mb-3 font-sans">Testimonials</span>
+                    <h2 class="text-4xl md:text-5xl font-heading font-medium mb-6">What Our Clients Say</h2>
+                    <p class="text-brand-muted font-light leading-relaxed mb-8 text-sm">The trust and confidence of our
+                        clients inspire everything we do. Hear their stories and discover how our services have helped
+                        them look and feel their very best.</p>
+                    <div class="flex items-center gap-4">
+                        <div class="flex star-gold text-xl gap-0.5">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        <span class="text-sm font-medium text-brand-text">4.9 from clients</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-8 relative gs-reveal">
+                    <div class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 hide-scroll cursor-grab active:cursor-grabbing"
+                        id="review-slider">
+                        <div class="review-card min-w-[300px] md:min-w-[380px] snap-center">
+                            <div class="flex justify-between items-start mb-5">
+                                <div>
+                                    <h4 class="font-medium text-brand-text">Maya R.</h4>
+                                    <span class="text-xs text-brand-muted">2 weeks ago</span>
+                                </div>
+                                <div class="flex star-gold text-xs gap-0.5">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-muted font-light leading-relaxed italic">"Precision is an
+                                understatement! My knotless braids are perfect and haven't budged in weeks. The parts
+                                are so clean."</p>
+                        </div>
+                        <div class="review-card min-w-[300px] md:min-w-[380px] snap-center">
+                            <div class="flex justify-between items-start mb-5">
+                                <div>
+                                    <h4 class="font-medium text-brand-text">Sarah L.</h4>
+                                    <span class="text-xs text-brand-muted">1 week ago</span>
+                                </div>
+                                <div class="flex star-gold text-xs gap-0.5">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-muted font-light leading-relaxed italic">"First time trying a
+                                wig and I'm obsessed. The lace is literally invisible. Haus of Beauty is the real deal."
+                            </p>
+                        </div>
+                        <div class="review-card min-w-[300px] md:min-w-[380px] snap-center">
+                            <div class="flex justify-between items-start mb-5">
+                                <div>
+                                    <h4 class="font-medium text-brand-text">Jessica M.</h4>
+                                    <span class="text-xs text-brand-muted">3 weeks ago</span>
+                                </div>
+                                <div class="flex star-gold text-xs gap-0.5">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-muted font-light leading-relaxed italic">"The vibe in the salon
+                                is unmatched. I felt so pampered and my twists look incredible. High-end service all the
+                                way."</p>
+                        </div>
+                        <div class="review-card min-w-[300px] md:min-w-[380px] snap-center">
+                            <div class="flex justify-between items-start mb-5">
+                                <div>
+                                    <h4 class="font-medium text-brand-text">Olivia W.</h4>
+                                    <span class="text-xs text-brand-muted">1 month ago</span>
+                                </div>
+                                <div class="flex star-gold text-xs gap-0.5">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                </div>
+                            </div>
+                            <p class="text-sm text-brand-muted font-light leading-relaxed italic">"Stitch braids are so
+                                crisp! The attention to detail here is on another level. Never going anywhere else."</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-4 justify-end">
+                        <button onclick="scrollSlider(-1)"
+                            class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text hover:bg-brand-gold hover:text-brand-bg hover:border-brand-gold transition-colors">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="scrollSlider(1)"
+                            class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text hover:bg-brand-gold hover:text-brand-bg hover:border-brand-gold transition-colors">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col items-center mb-16">
-                <div class="relative inline-block">
-                    <span
-                        class="font-script text-5xl md:text-7xl text-black absolute -top-10 -left-16 z-10 w-max select-none">Our</span>
-                    <h2 class="text-4xl md:text-6xl font-serif font-light tracking-widest uppercase relative z-0">RECENT
-                        WORK</h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-1.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 1">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-2.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 2">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-3.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 3">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-4.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 4">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-5.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 5">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-6.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 6">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                    <img src="assets/images/gallery/img-7.jpg"
-                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        alt="Gallery 7">
-                </div>
-                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer bg-black flex items-center justify-center">
-                    <div class="text-center text-white">
-                        <i data-lucide="instagram" class="w-12 h-12 mx-auto mb-3"></i>
-                        <p class="font-bold">Follow Us</p>
-                        <p class="text-sm text-gray-400">@hausofbeauty</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 md:py-32 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16 gs-reveal">
+            <span class="text-xs uppercase tracking-[0.2em] text-brand-muted block mb-3 font-sans">Support</span>
+            <h2 class="text-4xl md:text-5xl font-heading font-medium">Questions?</h2>
+        </div>
+        <div class="space-y-0 border-y border-brand-border gs-reveal">
+            <div class="faq-item border-b border-brand-border/50">
                 <button
-                    class="px-8 py-3 rounded-full border border-black hover:bg-black hover:text-white transition flex items-center gap-2 mx-auto">
-                    View Full Gallery <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col items-center mb-20">
-                <div class="relative inline-block">
+                    class="faq-btn w-full text-left py-6 flex justify-between items-center text-lg hover:text-brand-gold transition-colors group">
                     <span
-                        class="font-script text-5xl md:text-7xl text-black absolute -top-8 -left-16 z-10 select-none">Our</span>
-                    <h2 class="text-4xl md:text-6xl font-serif font-light tracking-widest uppercase relative z-0">
-                        Service Menu</h2>
+                        class="font-heading font-medium tracking-wide group-hover:pl-2 transition-all duration-300">What
+                        is the booking deposit?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="pb-6 text-brand-muted font-light text-sm leading-relaxed pr-8">
+                        A non-refundable deposit is required at the time of booking to secure your time slot. This
+                        deposit will be applied to your total service cost.
+                    </div>
                 </div>
-                <p class="text-gray-500 mt-4 font-sans text-sm tracking-wide">SELECT FROM OUR PREMIUM COLLECTIONS</p>
             </div>
-
-            <!-- Search Bar - Minimalist -->
-            <div class="max-w-md mx-auto mb-16 relative">
-                <input type="text" placeholder="SEARCH COLLECTION..."
-                    class="w-full py-2 border-b border-black bg-transparent text-center font-serif tracking-widest text-sm focus:outline-none placeholder-gray-400">
-            </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-8 lg:gap-y-16">
-
-                <!-- Card 1 -->
-                <div class="group cursor-pointer product-card text-center">
-                    <div
-                        class="relative aspect-[3/4] lg:aspect-[3/4] overflow-hidden mb-3 lg:mb-6 bg-gray-100 rounded-2xl lg:rounded-3xl">
-                        <img src="assets/images/gallery/img-10.jpg"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-out"
-                            alt="Knotless Braids">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-sm uppercase tracking-widest mb-2">Lemonade Braids</h3>
-                        <p class="font-sans text-xs font-medium text-gray-500">$30.00</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="group cursor-pointer product-card text-center">
-                    <div
-                        class="relative aspect-[3/4] lg:aspect-[3/4] overflow-hidden mb-3 lg:mb-6 bg-gray-100 rounded-2xl lg:rounded-3xl">
-                        <img src="assets/images/gallery/img-27.jpg"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-out"
-                            alt="Knotless Braids">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-sm uppercase tracking-widest mb-2">Knotless Braids</h3>
-                        <p class="font-sans text-xs font-medium text-gray-500">$55.00</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="group cursor-pointer product-card text-center">
-                    <div
-                        class="relative aspect-[3/4] lg:aspect-[3/4] overflow-hidden mb-3 lg:mb-6 bg-gray-100 rounded-2xl lg:rounded-3xl">
-                        <img src="assets/images/gallery/img-12.jpg"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-out"
-                            alt="Lagos Hairline">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-sm uppercase tracking-widest mb-2">Goddess Braids</h3>
-                        <p class="font-sans text-xs font-medium text-gray-500">$35.00</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="group cursor-pointer product-card text-center">
-                    <div
-                        class="relative aspect-[3/4] lg:aspect-[3/4] overflow-hidden mb-3 lg:mb-6 bg-gray-100 rounded-2xl lg:rounded-3xl">
-                        <img src="assets/images/gallery/img-3.jpg"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 ease-out"
-                            alt="Installation with Styling">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-sm uppercase tracking-widest mb-2">Installation with Styling</h3>
-                        <p class="font-sans text-xs font-medium text-gray-500">$45.00</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="mt-12">
+            <div class="faq-item border-b border-brand-border/50">
                 <button
-                    class="px-8 py-3 rounded-full border border-gray-300 hover:border-black hover:bg-black hover:text-white transition flex items-center gap-2">
-                    Read More <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    class="faq-btn w-full text-left py-6 flex justify-between items-center text-lg hover:text-brand-gold transition-colors group">
+                    <span
+                        class="font-heading font-medium tracking-wide group-hover:pl-2 transition-all duration-300">Can
+                        I reschedule my appointment?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-brand-muted transition-transform duration-300"></i>
                 </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Founder Section (Replaces About Us) -->
-    <section class="py-20 bg-white" id="about">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col items-center mb-20">
-                <div class="relative inline-block text-center">
-                    <h2 class="text-4xl md:text-6xl font-serif font-light tracking-widest uppercase relative z-0">HELLO
-                    </h2>
-                    <span
-                        class="font-script text-5xl md:text-7xl text-black absolute -bottom-8 left-1/2 -translate-x-1/2 z-10 w-max transform -rotate-6">Ladies</span>
+                <div class="faq-content">
+                    <div class="pb-6 text-brand-muted font-light text-sm leading-relaxed pr-8">
+                        Yes, you can reschedule your appointment without penalty if you provide at least 48 hours'
+                        notice. Changes made with less than 48 hours' notice will result in the forfeiture of your
+                        deposit.
+                    </div>
                 </div>
             </div>
-
-            <div class="relative grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-
-                <!-- Left Image -->
-                <div class="hidden lg:block h-[500px]">
-                    <img src="assets/images/gallery/img-61.jpg" class="w-full h-full object-cover grayscale opacity-80"
-                        alt="Founder Portrait Left">
-                </div>
-
-                <!-- Center Content Box -->
-                <div
-                    class="bg-black text-white p-10 md:p-14 text-center shadow-2xl relative z-20 my-8 lg:my-0 lg:-mx-12">
-                    <p class="font-serif tracking-widest text-sm md:text-base leading-loose uppercase">
-                        HI, I'M PELATIAH NCUBE. MY COMMITMENT IS TO DELIVER EXCEPTIONAL SERVICE, BUILD STRONG CLIENT
-                        RELATIONSHIPS, AND ENSURE A PREMIUM EXPERIENCE WITH EVERY APPOINTMENT.
-                    </p>
-                </div>
-
-                <!-- Right Image -->
-                <div class="hidden lg:block h-[500px]">
-                    <img src="assets/images/gallery/img-61.jpg" class="w-full h-full object-cover grayscale opacity-80"
-                        alt="Founder Portrait Right">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Policies Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col items-center mb-20">
-                <div class="relative inline-block">
-                    <span
-                        class="font-script text-5xl md:text-7xl text-black absolute -top-10 -left-16 z-10 w-max select-none">Our</span>
-                    <h2 class="text-4xl md:text-6xl font-serif font-light tracking-widest uppercase relative z-0">
-                        BOOKING POLICIES</h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Policy 1 -->
-                <div
-                    class="bg-black text-white p-8 md:p-10 text-center shadow-lg aspect-[4/5] flex flex-col justify-center rounded-3xl">
-                    <h3 class="font-serif text-2xl uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Payment
-                    </h3>
-                    <p class="font-sans font-light leading-relaxed opacity-90">
-                        Full payment is due at the time of service. We accept cash and eco cash.
-                    </p>
-                </div>
-
-                <!-- Policy 2 -->
-                <div
-                    class="bg-black text-white p-8 md:p-10 text-center shadow-lg aspect-[4/5] flex flex-col justify-center bg-gradient-to-b from-black to-[#1a1a1a] rounded-3xl">
-                    <h3 class="font-serif text-2xl uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Late
-                        Policy</h3>
-                    <p class="font-sans font-light leading-relaxed opacity-90">
-                        Please arrive on time. Clients arriving more than 30mins late may need to reschedule.
-                    </p>
-                </div>
-
-                <!-- Policy 3 -->
-                <div
-                    class="bg-black text-white p-8 md:p-10 text-center shadow-lg aspect-[4/5] flex flex-col justify-center rounded-3xl">
-                    <h3 class="font-serif text-2xl uppercase tracking-widest mb-6 border-b border-white/20 pb-4">
-                        Cancellation</h3>
-                    <p class="font-sans font-light leading-relaxed opacity-90">
-                        Any appointments cancelled with less than 48 hours notice will forfeit their deposit.
-                    </p>
-                </div>
-
-                <!-- Policy 4 -->
-                <div
-                    class="bg-black text-white p-8 md:p-10 text-center shadow-lg aspect-[4/5] flex flex-col justify-center bg-gradient-to-b from-black to-[#1a1a1a] rounded-3xl">
-                    <h3 class="font-serif text-2xl uppercase tracking-widest mb-6 border-b border-white/20 pb-4">Deposit
-                    </h3>
-                    <p class="font-sans font-light leading-relaxed opacity-90">
-                        A non-refundable deposit is required to secure your appointment. This will be applied to your
-                        total cost.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Appointment Prep Section -->
-    <section class="py-20 bg-black text-white">
-        <div class="max-w-[1440px] mx-auto px-6 text-center">
-            <div class="flex flex-col items-center mb-16">
-                <div class="relative inline-block">
-                    <span
-                        class="font-script text-6xl text-white/90 absolute -top-8 -left-20 z-10 w-max transform -rotate-12">Prepare</span>
-                    <h2 class="text-4xl md:text-5xl font-serif font-light tracking-widest uppercase relative z-0">FOR
-                        YOUR APPOINTMENT</h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    No
-                    Extra Guest</div>
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    Arrive
-                    On Time</div>
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    Dress
-                    Comfortably</div>
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    Cancel
-                    If Feeling Sick</div>
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    Use
-                    The Restroom Before</div>
-                <div
-                    class="bg-white text-black py-4 px-6 uppercase font-serif tracking-widest font-bold text-sm rounded-2xl">
-                    Wash
-                    Hair Day Before</div>
-            </div>
-
-            <p class="mt-16 text-white/60 font-sans font-light tracking-wide max-w-3xl mx-auto">
-                For safety and comfort, children are allowed only if they are receiving services. By booking, you agree
-                to these terms. Thank you for choosing us.
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-black text-white" id="cta">
-        <div class="max-w-[1440px] mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold mb-6">Ready to Transform Your Look?</h2>
-            <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-                Book your appointment today and experience the Haus Of Beauty difference. Our expert stylists are ready
-                to bring your vision to life.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="booking.html"
-                    class="px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition inline-flex justify-center items-center gap-2 cursor-pointer">
-                    <i data-lucide="calendar" class="w-5 h-5"></i> Book Now
-                </a>
+            <div class="faq-item border-b border-brand-border/50">
                 <button
-                    class="px-8 py-4 border border-white rounded-full font-medium hover:bg-white hover:text-black transition flex items-center gap-2">
-                    <i data-lucide="phone" class="w-5 h-5"></i> Call Us
+                    class="faq-btn w-full text-left py-6 flex justify-between items-center text-lg hover:text-brand-gold transition-colors group">
+                    <span
+                        class="font-heading font-medium tracking-wide group-hover:pl-2 transition-all duration-300">How
+                        should I prepare for my appointment?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-brand-muted transition-transform duration-300"></i>
                 </button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 max-w-[1440px] mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-            <div class="lg:col-span-4 pr-10">
-                <h2 class="text-4xl font-bold mb-6">Glowing <span class="font-bold">Reviews</span></h2>
-                <p class="text-gray-500 mb-10">Revitalize Your Skin and Spirit at Haus Of Beauty</p>
-
-                <div class="flex items-center">
-                    <div class="flex -space-x-4">
-                        <img class="w-12 h-12 rounded-full border-2 border-white object-cover"
-                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" alt="">
-                        <img class="w-12 h-12 rounded-full border-2 border-white object-cover"
-                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="">
-                        <img class="w-12 h-12 rounded-full border-2 border-white object-cover"
-                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="">
-                        <div
-                            class="w-12 h-12 rounded-full border-2 border-white bg-black text-white flex items-center justify-center text-xs font-bold z-10">
-                            +42
-                        </div>
+                <div class="faq-content">
+                    <div class="pb-6 text-brand-muted font-light text-sm leading-relaxed pr-8">
+                        Please arrive with clean, detangled hair without any oils, leave-in conditioners, or heavy
+                        products. Standard blowdries are included in our services.
                     </div>
                 </div>
             </div>
-
-            <div class="lg:col-span-8">
-                <div class="columns-1 md:columns-2 gap-6 space-y-6">
-
-                    <!-- Review 1 -->
-                    <div
-                        class="break-inside-avoid bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 review-card group">
-                        <div class="flex items-center gap-1 text-xs font-bold mb-4 text-emerald-600">
-                            <span class="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded-full">
-                                <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Appointment
-                            </span>
-                        </div>
-                        <p class="text-gray-800 font-medium mb-6 leading-relaxed italic">"Precision is an
-                            understatement! My knotless braids are perfect and haven't budged in weeks. The parts are so
-                            clean."</p>
-                        <div class="flex items-center gap-4">
-                            <img src="/C:/Users/ndaza/.gemini/antigravity/brain/c2e5c22c-5ad9-4cc6-8c10-38295ec5110e/reviewer_profile_3_1767731043966.png"
-                                class="w-12 h-12 rounded-full object-cover ring-2 ring-gray-50" alt="Maya R.">
-                            <div>
-                                <div class="flex items-center gap-1 text-xs font-bold mb-0.5">
-                                    <i data-lucide="star" class="w-3 h-3 fill-black"></i> 5.0
-                                    <span class="text-gray-400 font-normal ml-2">Small Knotless</span>
-                                </div>
-                                <h4 class="font-bold text-sm">Maya R.</h4>
-                            </div>
-                        </div>
+            <div class="faq-item border-b border-brand-border/50">
+                <button
+                    class="faq-btn w-full text-left py-6 flex justify-between items-center text-lg hover:text-brand-gold transition-colors group">
+                    <span class="font-heading font-medium tracking-wide group-hover:pl-2 transition-all duration-300">Do
+                        I need to bring my own hair?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="pb-6 text-brand-muted font-light text-sm leading-relaxed pr-8">
+                        Standard braiding hair is typically provided, but for certain styles (like Boho or Sew-ins), you
+                        may need to provide your own human hair bundles. This will be specified when booking.
                     </div>
-
-                    <!-- Review 2 -->
-                    <div
-                        class="break-inside-avoid bg-black p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 review-card group text-white">
-                        <div class="flex items-center gap-1 text-xs font-bold mb-4 text-white/60">
-                            <span class="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full">
-                                <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Appointment
-                            </span>
-                        </div>
-                        <p class="text-white font-medium mb-6 leading-relaxed">"First time trying a wig and I'm
-                            obsessed. The lace is literally invisible. Haus of Beauty is the real deal."</p>
-                        <div class="flex items-center gap-4">
-                            <img src="/C:/Users/ndaza/.gemini/antigravity/brain/c2e5c22c-5ad9-4cc6-8c10-38295ec5110e/reviewer_profile_2_1767731015468.png"
-                                class="w-12 h-12 rounded-full object-cover ring-2 ring-white/10" alt="Sarah L.">
-                            <div>
-                                <div class="flex items-center gap-1 text-xs font-bold mb-0.5">
-                                    <i data-lucide="star" class="w-3 h-3 fill-white"></i> 4.9
-                                    <span class="text-white/40 font-normal ml-2">Wig Installation</span>
-                                </div>
-                                <h4 class="font-bold text-sm">Sarah L.</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review 3 -->
-                    <div
-                        class="break-inside-avoid bg-gray-50 p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 review-card group">
-                        <div class="flex items-center gap-1 text-xs font-bold mb-4 text-emerald-600">
-                            <span class="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded-full">
-                                <i data-lucide="check-circle" class="w-3 h-3"></i> Verified Appointment
-                            </span>
-                        </div>
-                        <p class="text-gray-800 font-medium mb-6 leading-relaxed">"The vibe in the salon is unmatched. I
-                            felt so pampered and my twists look incredible. High-end service all the way."</p>
-                        <div class="flex items-center gap-4">
-                            <img src="/C:/Users/ndaza/.gemini/antigravity/brain/c2e5c22c-5ad9-4cc6-8c10-38295ec5110e/reviewer_profile_1_1767730965541.png"
-                                class="w-12 h-12 rounded-full object-cover ring-2 ring-gray-50" alt="Jessica M.">
-                            <div>
-                                <div class="flex items-center gap-1 text-xs font-bold mb-0.5">
-                                    <i data-lucide="star" class="w-3 h-3 fill-black"></i> 4.8
-                                    <span class="text-gray-400 font-normal ml-2">Boho Twists</span>
-                                </div>
-                                <h4 class="font-bold text-sm">Jessica M.</h4>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review 4 -->
-                    <div
-                        class="break-inside-avoid bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 review-card group">
-                        <p class="text-gray-800 font-medium mb-6 leading-relaxed italic">"Stitch braids are so crisp!
-                            The attention to detail here is on another level. Never going anywhere else."</p>
-                        <div class="flex items-center gap-4">
-                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=120"
-                                class="w-12 h-12 rounded-full object-cover ring-2 ring-gray-50" alt="Olivia W.">
-                            <div>
-                                <div class="flex items-center gap-1 text-xs font-bold mb-0.5">
-                                    <i data-lucide="star" class="w-3 h-3 fill-black"></i> 4.7
-                                    <span class="text-gray-400 font-normal ml-2">Stitch Braids</span>
-                                </div>
-                                <h4 class="font-bold text-sm">Olivia W.</h4>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-
-            <div class="lg:col-span-12 flex justify-between items-center mt-12 bg-gray-50 p-8 rounded-[40px]">
-                <div class="flex flex-col gap-1">
-                    <div class="flex items-center gap-1 text-black">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <span class="ml-2 font-bold">4.9/5</span>
+            <div class="faq-item">
+                <button
+                    class="faq-btn w-full text-left py-6 flex justify-between items-center text-lg hover:text-brand-gold transition-colors group">
+                    <span
+                        class="font-heading font-medium tracking-wide group-hover:pl-2 transition-all duration-300">How
+                        long will my style last?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-brand-muted transition-transform duration-300"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="pb-6 text-brand-muted font-light text-sm leading-relaxed pr-8">
+                        Depending on the style, braids can last 4–8 weeks with proper maintenance. We provide aftercare
+                        instructions to help you maximize the longevity of your style.
                     </div>
-                    <p class="text-sm text-gray-500 font-medium">Based on 250+ client reviews</p>
-                </div>
-                <div class="flex gap-3">
-                    <button
-                        class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-white transition-all duration-300">
-                        <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                    </button>
-                    <button
-                        class="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition-all duration-300 shadow-lg shadow-black/10">
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Info Section (Hours & Contact) -->
-    <section class="py-20 bg-white" id="info">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-
-                <!-- Booking Hours -->
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 px-6 border-t border-brand-border bg-[#0a0908]">
+        <div class="max-w-[90rem] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-heading uppercase tracking-[0.15em] text-brand-text mb-6 font-medium">Haus
+                        Of Beauty</div>
+                    <p class="text-sm text-brand-muted font-light max-w-sm mb-8 leading-relaxed">Elevating hair braiding
+                        to an art form. Providing precision, perfection, and professionalism.</p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-gold hover:border-brand-gold transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-gold hover:border-brand-gold transition-colors">
+                            <i data-lucide="music" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-muted hover:text-brand-gold hover:border-brand-gold transition-colors">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
                 <div>
-                    <div class="relative mb-12 text-center md:text-left">
-                        <h2 class="text-5xl md:text-7xl font-serif font-light tracking-widest uppercase">Booking</h2>
-                        <span class="font-script text-5xl text-black absolute -top-4 left-48 z-10 w-max">Hours</span>
-                    </div>
-
-                    <div class="bg-[#1a1a1a] text-white p-12 text-center shadow-2xl rounded-[40px]">
-                        <div class="mb-12">
-                            <h3 class="text-2xl md:text-3xl font-serif font-bold uppercase tracking-widest mb-4">Monday
-                                - Saturday</h3>
-                            <p class="font-sans text-xl font-light tracking-widest opacity-80">8 AM - 6 PM</p>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-serif font-bold uppercase tracking-widest mb-4">Sunday
-                            </h3>
-                            <p class="font-sans text-xl font-light tracking-widest opacity-80 uppercase">Closed</p>
-                        </div>
-                    </div>
+                    <h4 class="text-brand-text text-sm font-semibold uppercase tracking-widest mb-6 font-sans">Quick
+                        Links</h4>
+                    <ul class="space-y-4 text-sm text-brand-muted font-light">
+                        <li><a href="booking.html" class="hover:text-brand-gold transition-colors">Book Appointment</a>
+                        </li>
+                        <li><a href="shop.html" class="hover:text-brand-gold transition-colors">Purchase Bundles</a>
+                        </li>
+                        <li><a href="#work" class="hover:text-brand-gold transition-colors">Portfolio</a></li>
+                        <li><a href="#faq" class="hover:text-brand-gold transition-colors">FAQ</a></li>
+                    </ul>
                 </div>
-
-                <!-- Contact Infos -->
                 <div>
-                    <div class="relative mb-12 text-center md:text-left">
-                        <h2 class="text-5xl md:text-7xl font-serif font-light tracking-widest uppercase">Contact</h2>
-                        <span class="font-script text-5xl text-black absolute -top-4 left-64 z-10 w-max">Infos</span>
-                    </div>
-
-                    <div
-                        class="bg-[#1a1a1a] text-white p-12 shadow-2xl h-full flex flex-col justify-center space-y-8 rounded-[40px]">
-                        <div class="flex items-center gap-6">
-                            <div class="flex gap-4">
-                                <div
-                                    class="w-10 h-10 bg-black flex items-center justify-center rounded text-white border border-white/20">
-                                    <i data-lucide="music" class="w-5 h-5"></i>
-                                </div>
-                                <div
-                                    class="w-10 h-10 bg-black flex items-center justify-center rounded text-white border border-white/20">
-                                    <i data-lucide="instagram" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                            <span class="font-serif tracking-widest text-lg">@HAUSOFBEAUTY</span>
-                        </div>
-
-                        <div class="flex items-center gap-6">
-                            <div
-                                class="w-10 h-10 bg-black flex items-center justify-center rounded text-white shrink-0 border border-white/20">
-                                <i data-lucide="phone" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-serif tracking-widest text-lg">+263 78 526 0818</span>
-                        </div>
-
-                        <div class="flex items-center gap-6">
-                            <div
-                                class="w-10 h-10 bg-black flex items-center justify-center rounded text-white shrink-0 border border-white/20">
-                                <i data-lucide="mail" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-serif tracking-widest text-lg uppercase">EMAIL@YOUREMAIL.COM</span>
-                        </div>
-
-                        <div class="flex items-center gap-6">
-                            <div
-                                class="w-10 h-10 bg-black flex items-center justify-center rounded text-white shrink-0 border border-white/20">
-                                <i data-lucide="globe" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-serif tracking-widest text-lg uppercase">WWW.YOURWEBSITE.COM</span>
-                        </div>
-
-                        <div class="flex items-center gap-6">
-                            <div
-                                class="w-10 h-10 bg-black flex items-center justify-center rounded text-white shrink-0 border border-white/20">
-                                <i data-lucide="map-pin" class="w-5 h-5"></i>
-                            </div>
-                            <span class="font-serif tracking-widest text-lg uppercase leading-relaxed">25 Joshua
-                                Mqabuko, Qatha Lodge</span>
-                        </div>
-                    </div>
+                    <h4 class="text-brand-text text-sm font-semibold uppercase tracking-widest mb-6 font-sans">Contact
+                    </h4>
+                    <ul class="space-y-4 text-sm text-brand-muted font-light">
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +263 78 526 0818
+                        </li>
+                        <li class="flex items-center gap-2"><i data-lucide="instagram" class="w-4 h-4"></i>
+                            @hausofbeauty</li>
+                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> 25 Joshua
+                            Mqabuko</li>
+                    </ul>
                 </div>
-
             </div>
-        </div>
-    </section>
-
-    <footer class="bg-white border-t border-gray-200 pt-10 pb-10">
-        <div class="max-w-[1440px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-brand-dark/60">
-                <div class="flex flex-col md:flex-row gap-4 md:gap-12 mb-4 md:mb-0 text-center md:text-left">
-                    <span class="font-serif tracking-widest text-black">HAUS OF BEAUTY</span>
-                </div>
-                <div class="flex flex-col md:flex-row gap-4 md:gap-12 text-center md:text-right">
-                    <a href="#" class="hover:text-black transition uppercase tracking-widest">Privacy Policy</a>
-                    <span class="uppercase tracking-widest">@2024 Haus of Beauty</span>
-                </div>
+            <div
+                class="border-t border-brand-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-muted uppercase tracking-widest">
+                <div>&copy; 2025 Haus Of Beauty. All rights reserved.</div>
+                <div>Site by <span class="text-brand-gold font-medium">Haus Of Beauty</span></div>
             </div>
         </div>
     </footer>
 
+    <!-- Floating Instagram Button -->
+    <a href="#" class="floating-ig" id="floatingIg">
+        <i data-lucide="instagram" class="w-6 h-6"></i>
+    </a>
+
     <!-- Sticky CTA for Mobile -->
     <div class="sticky-cta" id="stickyCta">
         <a href="booking.html"
-            class="flex items-center justify-center gap-2 w-full py-3 bg-white text-black font-semibold rounded-full">
-            <i data-lucide="calendar" class="w-5 h-5"></i>
-            Book Now
+            class="flex items-center justify-center gap-2 w-full py-3 bg-brand-gold text-brand-bg font-semibold rounded-full">
+            <i data-lucide="calendar" class="w-5 h-5"></i> Book Now
         </a>
     </div>
+
     <script src="js/main.js"></script>
     <script>
-        // Update Cart Count from localStorage
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('hausCart')) || [];
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);

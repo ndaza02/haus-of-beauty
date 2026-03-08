@@ -1,312 +1,341 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Appointment - Haus Of Beauty</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <title>Book Appointment | Haus Of Beauty</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Bodoni Moda"', 'serif'],
-                        script: ['"Great Vibes"', 'cursive'],
-                    },
                     colors: {
-                        brand: {
-                            dark: '#000000',
-                            light: '#ffffff',
-                            accent: '#f5f5f5',
-                            gray: '#e5e5e5',
-                            charcoal: '#2d2d2d'
-                        }
+                        'brand-bg': '#FFFFFF',
+                        'brand-surface': '#F9F9F9',
+                        'brand-elevated': '#F3F3F3',
+                        'brand-gold': '#B8860B',
+                        'brand-text': '#110F0E',
+                        'brand-muted': '#666666',
+                        'brand-border': '#E5E5E5',
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="antialiased overflow-x-hidden bg-brand-accent min-h-screen flex flex-col">
+<body class="bg-brand-bg text-brand-text font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <nav class="w-full z-50 px-6 py-4 bg-black" id="navbar">
-        <div class="flex justify-between items-center max-w-[1440px] mx-auto">
-            <div class="flex items-center gap-2">
-                <a href="index.html" aria-label="Go back to home" title="Go back to home"
-                    class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition">
+    <!-- Loader -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-white flex items-center justify-center">
+        <div class="loader-content w-full max-w-2xl px-8">
+            <img src="assets/images/loader-splash.jpg" alt="Welcome to Haus Of Beauty Salon"
+                class="loader-image w-full h-auto opacity-0 scale-95 transition-all duration-700">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 py-4 px-6 bg-white/80 backdrop-blur-md border-b border-brand-border transition-all duration-500">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-text group-hover:bg-brand-gold group-hover:text-brand-bg transition-all">
                     <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                </a>
+                </div>
+                <span
+                    class="text-xs uppercase tracking-[0.2em] text-brand-muted group-hover:text-brand-gold transition-colors">Back
+                    to Home</span>
+            </a>
+            <div class="absolute left-1/2 -translate-x-1/2">
+                <a href="index.html"
+                    class="font-heading text-2xl md:text-3xl tracking-tighter hover:text-brand-gold transition-colors">HAUS
+                    OF BEAUTY</a>
             </div>
-            <a href="index.html" class="text-white font-bold text-xl tracking-tight font-serif uppercase">Haus Of
-                Beauty</a>
-            <div class="w-10"></div> <!-- Spacer for center alignment -->
+            <div class="w-10"></div> <!-- Spacer -->
         </div>
     </nav>
 
-    <!-- Main Booking Container -->
-    <main class="flex-grow flex items-center justify-center py-12 px-4 md:px-8">
-        <div
-            class="max-w-4xl w-full bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row min-h-[700px]">
-
-            <!-- Left Sidebar Status -->
-            <div class="w-full md:w-1/3 bg-black text-white p-8 flex flex-col relative overflow-hidden">
-                <div class="absolute inset-0 opacity-20">
-                    <img src="assets/images/gallery/img-10.jpg" class="w-full h-full object-cover" alt="Background">
-                    <div class="absolute inset-0 bg-black/80"></div>
+    <main class="flex-grow pt-32 pb-24 px-6 max-w-7xl mx-auto w-full">
+        <!-- Progress Stepper -->
+        <div class="mb-16">
+            <div class="flex items-center justify-between max-w-4xl mx-auto relative px-4">
+                <!-- Lines -->
+                <div class="absolute top-1/2 left-0 w-full h-[1px] bg-brand-border -translate-y-1/2 z-0"></div>
+                <div id="stepProgress"
+                    class="absolute top-1/2 left-0 w-0 h-[1.5px] bg-brand-gold -translate-y-1/2 z-0 transition-all duration-700">
                 </div>
 
-                <div class="relative z-10 flex-grow">
-                    <h3 class="font-serif text-sm tracking-widest text-white/50 mb-1 border-b border-white/20 pb-4">
-                        BOOKING PROGRESS</h3>
-
-                    <ul class="mt-8 space-y-6" id="progressList">
-                        <!-- Filled by JS -->
-                    </ul>
+                <!-- Steps -->
+                <div class="step-item active relative z-10 flex flex-col items-center gap-3" data-step="1">
+                    <div
+                        class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-muted transition-all duration-500 status-icon">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-muted font-medium">Service</span>
                 </div>
-
-                <div class="relative z-10 mt-8 pt-6 border-t border-white/20">
-                    <h4 class="font-serif text-sm tracking-widest text-white/50 mb-2">SUMMARY</h4>
-                    <p class="font-bold text-lg" id="summaryService">Service: <span
-                            class="text-white/60 font-normal">Pending</span></p>
-                    <p class="font-bold text-lg" id="summaryTime">Time: <span
-                            class="text-white/60 font-normal">Pending</span></p>
+                <div class="step-item relative z-10 flex flex-col items-center gap-3" data-step="2">
+                    <div
+                        class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-muted transition-all duration-500 status-icon">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-muted font-medium">Date & Time</span>
+                </div>
+                <div class="step-item relative z-10 flex flex-col items-center gap-3" data-step="3">
+                    <div
+                        class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-muted transition-all duration-500 status-icon">
+                        <i data-lucide="plus-square" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-muted font-medium">Add-ons</span>
+                </div>
+                <div class="step-item relative z-10 flex flex-col items-center gap-3" data-step="4">
+                    <div
+                        class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-muted transition-all duration-500 status-icon">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-muted font-medium">Contact</span>
+                </div>
+                <div class="step-item relative z-10 flex flex-col items-center gap-3" data-step="5">
+                    <div
+                        class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-muted transition-all duration-500 status-icon">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-brand-muted font-medium">Payment</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Right Content Area -->
-            <div class="w-full md:w-2/3 p-8 md:p-12 relative flex flex-col" id="stepContainer">
-
-                <!-- Step 1: Welcome -->
-                <div id="step-1" class="step-panel hidden h-full flex flex-col justify-center items-center text-center">
-                    <h2 class="font-script text-6xl md:text-7xl mb-4">Welcome</h2>
-                    <h1 class="font-serif text-3xl md:text-5xl mb-6">Ready to Book?</h1>
-                    <p class="text-gray-600 mb-10 max-w-sm">Experience luxury braiding and styling. Our online booking
-                        is fast, seamless, and tailored for you.</p>
-                    <button
-                        class="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition flex items-center gap-2 next-step-btn"
-                        data-target="2">
-                        Get Started <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
-                </div>
-
-                <!-- Step 2: Our Work Gallery -->
-                <div id="step-2" class="step-panel hidden h-full flex flex-col">
-                    <h2 class="font-serif text-3xl mb-2">Our Work</h2>
-                    <p class="text-gray-500 mb-8">A glimpse into the Haus of Beauty experience.</p>
-
-                    <div class="grid grid-cols-2 gap-4 flex-grow mb-8 overflow-y-auto max-h-[400px] hide-scrollbar">
-                        <img src="assets/images/gallery/img-27.jpg" class="rounded-2xl w-full h-40 object-cover"
-                            alt="Work 1">
-                        <img src="assets/images/gallery/img-12.jpg" class="rounded-2xl w-full h-40 object-cover"
-                            alt="Work 2">
-                        <img src="assets/images/gallery/img-19.jpg" class="rounded-2xl w-full h-40 object-cover"
-                            alt="Work 3">
-                        <img src="assets/images/gallery/img-4.jpg" class="rounded-2xl w-full h-40 object-cover"
-                            alt="Work 4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Left: Step Content -->
+            <div class="lg:col-span-8">
+                <!-- Step 1: Service Selection -->
+                <div id="step-panel-1" class="step-panel active">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-heading mb-4">Choose Your Service</h1>
+                        <p class="text-brand-muted font-light">Select the braid style or service you'd like to book.</p>
                     </div>
 
-                    <div class="flex justify-between items-center mt-auto border-t pt-6">
-                        <button class="text-gray-500 hover:text-black flex items-center gap-2 prev-step-btn"
-                            data-target="1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                        <button
-                            class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 flex items-center gap-2 next-step-btn"
-                            data-target="3">Choose Service <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Select Service -->
-                <div id="step-3" class="step-panel hidden h-full flex flex-col">
-                    <h2 class="font-serif text-3xl mb-2">Select Service</h2>
-                    <p class="text-gray-500 mb-6">Choose your desired style.</p>
-
-                    <div class="flex-grow overflow-y-auto max-h-[400px] hide-scrollbar pr-2 space-y-3"
-                        id="servicesList">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="serviceSelectionList">
                         <!-- Populated by JS -->
                     </div>
+                </div>
 
-                    <div class="flex justify-between items-center mt-6 border-t pt-6">
-                        <button class="text-gray-500 hover:text-black flex items-center gap-2 prev-step-btn"
-                            data-target="2"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                        <button
-                            class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 opacity-50 cursor-not-allowed flex items-center gap-2 next-step-btn"
-                            id="btn-to-4" data-target="4" disabled>Next <i data-lucide="arrow-right"
-                                class="w-4 h-4"></i></button>
+                <!-- Step 2: Date & Time -->
+                <div id="step-panel-2" class="step-panel hidden">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-heading mb-4">Select Date & Time</h1>
+                        <p class="text-brand-muted font-light">Choose a slot that works best for you.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
+                            <label class="block text-xs uppercase tracking-widest text-brand-muted mb-4">Select
+                                Date</label>
+                            <input type="date" id="bookDate"
+                                class="w-full bg-brand-elevated border border-brand-border rounded-lg p-4 text-brand-text focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
+                            <label class="block text-xs uppercase tracking-widest text-brand-muted mb-4">Select
+                                Time</label>
+                            <div class="grid grid-cols-2 gap-3" id="timeSlotGrid">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Step 4: Details & Time -->
-                <div id="step-4" class="step-panel hidden h-full flex flex-col">
-                    <h2 class="font-serif text-3xl mb-6">Date & Details</h2>
+                <!-- Step 3: Add-ons -->
+                <div id="step-panel-3" class="step-panel hidden">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-heading mb-4">Customize Your Style</h1>
+                        <p class="text-brand-muted font-light">Add any extra services or treatments.</p>
+                    </div>
 
-                    <div class="flex-grow overflow-y-auto max-h-[450px] hide-scrollbar pr-2 space-y-5">
-                        <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4" id="addonsList">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Step 4: Contact Info -->
+                <div id="step-panel-4" class="step-panel hidden">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-heading mb-4">Personal Details</h1>
+                        <p class="text-brand-muted font-light">Tell us who we'll be styling.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="bookDate"
-                                    class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Date</label>
-                                <input type="date" id="bookDate" title="Select appointment date"
-                                    aria-label="Select appointment date"
-                                    class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-black">
+                                <label class="block text-xs uppercase tracking-widest text-brand-muted mb-2">First
+                                    Name</label>
+                                <input type="text" id="firstName"
+                                    class="w-full bg-brand-elevated border border-brand-border rounded-lg p-4 text-brand-text focus:outline-none focus:border-brand-gold">
                             </div>
                             <div>
-                                <label for="bookTime"
-                                    class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Time</label>
-                                <select id="bookTime" title="Select appointment time"
-                                    aria-label="Select appointment time"
-                                    class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-black">
-                                    <option value="" disabled selected>Select time</option>
-                                    <option value="09:00 AM">09:00 AM</option>
-                                    <option value="11:30 AM">11:30 AM</option>
-                                    <option value="02:00 PM">02:00 PM</option>
-                                    <option value="04:30 PM">04:30 PM</option>
-                                </select>
+                                <label class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Last
+                                    Name</label>
+                                <input type="text" id="lastName"
+                                    class="w-full bg-brand-elevated border border-brand-border rounded-lg p-4 text-brand-text focus:outline-none focus:border-brand-gold">
                             </div>
                         </div>
-
                         <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Full
-                                Name</label>
-                            <input type="text" id="bookName" placeholder="Jane Doe"
-                                class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-black">
+                            <label class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Email
+                                Address</label>
+                            <input type="email" id="bookEmail"
+                                class="w-full bg-brand-elevated border border-brand-border rounded-lg p-4 text-brand-text focus:outline-none focus:border-brand-gold">
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label
-                                    class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Email</label>
-                                <input type="email" id="bookEmail" placeholder="jane@example.com"
-                                    class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-black">
-                            </div>
-                            <div>
-                                <label
-                                    class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Phone</label>
-                                <input type="tel" id="bookPhone" placeholder="+1..."
-                                    class="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-black">
-                            </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-brand-muted mb-2">Phone
+                                Number</label>
+                            <input type="tel" id="bookPhone"
+                                class="w-full bg-brand-elevated border border-brand-border rounded-lg p-4 text-brand-text focus:outline-none focus:border-brand-gold">
                         </div>
-                    </div>
-
-                    <div class="flex justify-between items-center mt-6 border-t pt-6">
-                        <button class="text-gray-500 hover:text-black flex items-center gap-2 prev-step-btn"
-                            data-target="3"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                        <button
-                            class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 flex items-center gap-2 next-step-btn"
-                            id="btn-to-5" data-target="5">Next <i data-lucide="arrow-right"
-                                class="w-4 h-4"></i></button>
                     </div>
                 </div>
 
-                <!-- Step 5: Booking Policy -->
-                <div id="step-5" class="step-panel hidden h-full flex flex-col">
-                    <h2 class="font-serif text-3xl mb-2">Booking Policy</h2>
-                    <p class="text-gray-500 mb-6">Please review our studio policies.</p>
-
-                    <div
-                        class="flex-grow overflow-y-auto max-h-[400px] hide-scrollbar border border-gray-100 rounded-2xl p-6 bg-gray-50 text-sm text-gray-700 space-y-4">
-                        <p><strong>Cancellations:</strong> We require 48 hours notice for any cancellations or
-                            rescheduling. Cancellations within 48 hours will incur a 50% fee.</p>
-                        <p><strong>Late Arrivals:</strong> If you are more than 15 minutes late, your appointment may be
-                            cancelled and treated as a no-show.</p>
-                        <p><strong>Deposits:</strong> A non-refundable deposit may be required to secure your slot,
-                            which goes towards your final service cost.</p>
-                        <p><strong>Guests:</strong> To maintain a relaxing environment and due to limited seating,
-                            please do not bring extra guests unless they are also receiving a service.</p>
+                <!-- Step 5: Payment / Policy -->
+                <div id="step-panel-5" class="step-panel hidden">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-5xl font-heading mb-4">Finalize Booking</h1>
+                        <p class="text-brand-muted font-light">Review our policy and secure your appointment.</p>
                     </div>
 
-                    <div class="mt-6 flex items-start gap-3">
-                        <input type="checkbox" id="policyAgree" class="mt-1 w-5 h-5 accent-black cursor-pointer">
-                        <label for="policyAgree" class="text-sm cursor-pointer select-none">I have read and agree to the
-                            booking policies and terms of service.</label>
-                    </div>
-
-                    <div class="flex justify-between items-center mt-6 border-t pt-6">
-                        <button class="text-gray-500 hover:text-black flex items-center gap-2 prev-step-btn"
-                            data-target="4"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                        <button
-                            class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 opacity-50 cursor-not-allowed flex items-center gap-2 next-step-btn"
-                            id="btn-to-6" data-target="6" disabled>Accept & Continue <i data-lucide="arrow-right"
-                                class="w-4 h-4"></i></button>
-                    </div>
-                </div>
-
-                <!-- Step 6: Prepare & Confirm -->
-                <div id="step-6" class="step-panel hidden h-full flex flex-col">
-                    <h2 class="font-serif text-3xl mb-2">Preparation & Confirm</h2>
-
-                    <div class="flex-grow overflow-y-auto max-h-[400px] hide-scrollbar space-y-6">
-
-                        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-                            <h3 class="font-bold text-amber-900 flex items-center gap-2 mb-2"><i
-                                    data-lucide="alert-circle" class="w-5 h-5"></i> Before You Arrive</h3>
-                            <ul class="list-disc list-inside text-sm text-amber-800 space-y-2 mt-3">
-                                <li>Ensure hair is completely detangled and washed unless booking a wash service.</li>
-                                <li>Do not apply heavy oils or grease to your scalp prior to braiding.</li>
-                                <li>If bringing your own hair/wigs, drop them off 2 days prior to your appointment.</li>
-                            </ul>
+                    <div class="bg-brand-surface border border-brand-border rounded-xl p-8 mb-8">
+                        <h3 class="text-xl font-heading mb-6 flex items-center gap-2">
+                            <i data-lucide="shield-check" class="text-brand-gold"></i>
+                            Booking Agreement
+                        </h3>
+                        <div class="space-y-4 text-sm text-brand-muted font-light leading-relaxed">
+                            <p>A non-refundable deposit is required to secure your appointment. This will be deducted
+                                from your final total.</p>
+                            <p>Please ensure you arrive with clean, detangled hair. We reserve the right to reschedule
+                                if preparation is not met.</p>
+                            <p>Cancellations must be made at least 48 hours in advance. Failure to do so results in
+                                deposit forfeiture.</p>
                         </div>
-
-                        <div class="border border-gray-200 rounded-2xl p-6">
-                            <h3 class="font-bold border-b pb-3 mb-3 text-lg">Final Review</h3>
-                            <div class="space-y-2 text-sm">
-                                <p class="flex justify-between"><span class="text-gray-500">Service:</span> <span
-                                        id="finalService" class="font-bold">None</span></p>
-                                <p class="flex justify-between"><span class="text-gray-500">Date & Time:</span> <span
-                                        id="finalDateTime" class="font-bold">None</span></p>
-                                <p class="flex justify-between"><span class="text-gray-500">Name:</span> <span
-                                        id="finalName" class="font-bold">None</span></p>
-                                <p class="flex justify-between pt-3 mt-3 border-t"><span class="text-gray-500">Estimated
-                                        Total:</span> <span id="finalPrice" class="font-bold text-lg">$0.00</span></p>
-                            </div>
+                        <div class="mt-8 pt-8 border-t border-brand-border flex items-start gap-3">
+                            <input type="checkbox" id="policyAgree"
+                                class="mt-1 w-5 h-5 rounded border-brand-border bg-brand-elevated text-brand-gold">
+                            <label for="policyAgree" class="text-sm font-light text-brand-muted">I have read and agree
+                                to the booking policies and terms of service.</label>
                         </div>
-                    </div>
-
-                    <div class="flex justify-between items-center mt-6 border-t pt-6">
-                        <button class="text-gray-500 hover:text-black flex items-center gap-2 prev-step-btn"
-                            data-target="5"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                        <button id="confirmBtn"
-                            class="bg-black text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 w-full md:w-auto text-center">Confirm
-                            Booking</button>
                     </div>
                 </div>
 
                 <!-- Success State -->
-                <div id="step-success"
-                    class="step-panel hidden h-full flex flex-col justify-center items-center text-center">
+                <div id="step-panel-success" class="step-panel hidden text-center py-12">
                     <div
-                        class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
-                        <i data-lucide="check" class="w-10 h-10"></i>
+                        class="w-24 h-24 bg-brand-gold/10 rounded-full flex items-center justify-center text-brand-gold mx-auto mb-8">
+                        <i data-lucide="check-circle" class="w-12 h-12"></i>
                     </div>
-                    <h2 class="font-serif text-3xl md:text-4xl mb-4">Booking Confirmed!</h2>
-                    <p class="text-gray-600 mb-8 max-w-sm">Thank you for choosing Haus of Beauty. We've sent a
-                        confirmation email with all the details.</p>
+                    <h1 class="text-5xl font-heading mb-4">Booking Confirmed!</h1>
+                    <p class="text-brand-muted font-light max-w-sm mx-auto mb-12">We've sent a confirmation email with
+                        all the details. We can't wait to see you soon!</p>
                     <a href="index.html"
-                        class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition">Return
+                        class="inline-flex items-center justify-center px-10 py-4 bg-brand-gold text-brand-bg font-semibold rounded-full hover:bg-white hover:text-brand-bg transition-all">Back
                         to Home</a>
                 </div>
 
+                <!-- Navigation Controls -->
+                <div class="mt-12 flex justify-between items-center" id="stepControls">
+                    <button id="prevBtn"
+                        class="px-8 py-3 rounded-full border border-brand-border text-brand-muted hover:text-brand-text hover:border-brand-text transition-all opacity-0 pointer-events-none">
+                        Back
+                    </button>
+                    <button id="nextBtn"
+                        class="px-10 py-4 bg-brand-gold text-brand-bg font-semibold rounded-full hover:bg-white hover:text-brand-bg transition-all disabled:opacity-50 disabled:pointer-events-none">
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Booking Summary -->
+            <div class="lg:col-span-4">
+                <div class="sticky top-32 space-y-6">
+                    <div class="bg-brand-surface border border-brand-border rounded-xl overflow-hidden shadow-2xl">
+                        <div class="bg-brand-elevated p-6 border-b border-brand-border">
+                            <h2 class="text-2xl font-heading">Booking Summary</h2>
+                        </div>
+
+                        <div class="p-6 space-y-6">
+                            <!-- Service Details -->
+                            <div id="summaryDetails" class="space-y-4">
+                                <div class="flex justify-between items-start">
+                                    <div class="text-brand-muted text-xs uppercase tracking-widest">Service</div>
+                                    <div class="text-right">
+                                        <div id="sumServiceName" class="text-brand-text font-medium">Not Selected</div>
+                                        <div id="sumServiceDuration" class="text-brand-muted text-[10px] mt-1">--</div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-brand-muted text-xs uppercase tracking-widest">Date & Time</div>
+                                    <div id="sumDateTime" class="text-brand-text font-medium text-sm">--</div>
+                                </div>
+                                <div id="sumAddonsList" class="space-y-2 hidden">
+                                    <div class="text-brand-muted text-xs uppercase tracking-widest mb-1">Add-ons</div>
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-brand-border space-y-3">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-brand-muted">Total Price</span>
+                                    <span id="sumTotal" class="text-brand-text font-bold">$00.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-brand-muted">Deposit Required</span>
+                                    <span id="sumDeposit" class="text-brand-gold font-bold">$20.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Policies Mini List -->
+                    <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
+                        <h3 class="text-sm uppercase tracking-widest mb-4 font-semibold text-brand-gold">Booking
+                            Policies</h3>
+                        <ul class="space-y-3">
+                            <li class="text-[11px] text-brand-muted flex gap-2">
+                                <i data-lucide="check" class="w-3 h-3 text-brand-gold shrink-0 mt-0.5"></i>
+                                Non-refundable deposit required.
+                            </li>
+                            <li class="text-[11px] text-brand-muted flex gap-2">
+                                <i data-lucide="check" class="w-3 h-3 text-brand-gold shrink-0 mt-0.5"></i>
+                                Cash/EcoCash for remaining balance.
+                            </li>
+                            <li class="text-[11px] text-brand-muted flex gap-2">
+                                <i data-lucide="check" class="w-3 h-3 text-brand-gold shrink-0 mt-0.5"></i>
+                                Arrive with detangled hair.
+                            </li>
+                            <li class="text-[11px] text-brand-muted flex gap-2">
+                                <i data-lucide="check" class="w-3 h-3 text-brand-gold shrink-0 mt-0.5"></i>
+                                Reschedule at least 24 hours before.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
+    <!-- JS -->
     <script src="js/booking-page.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 
 </html>
