@@ -547,7 +547,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 year: 'numeric' 
             });
             
-            let message = `*New Booking Request*\n\n`;
+            let message = `*New Booking Request* 📅\n\n`;
             message += `*Service:* ${bookingState.selectedService.name}\n`;
             message += `*Length:* ${bookingState.selectedLength.name}\n`;
             message += `*Duration:* ${bookingState.selectedService.duration}\n`;
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (bookingState.selectedAddons.length > 0) {
                 message += `\n*Add-ons:*\n`;
                 bookingState.selectedAddons.forEach(a => {
-                    message += `- ${a.name} (+$${a.price})\n`;
+                    message += `• ${a.name} (+$${a.price})\n`;
                 });
             }
             
@@ -569,7 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
             message += `Email: ${bookingState.customerInfo.email}\n`;
             message += `Phone: ${bookingState.customerInfo.phone}\n`;
             
-            message += `\nPlease confirm this booking. Thank you!`;
+            message += `\nPlease confirm this booking. Thank you! ✨`;
 
             // Open WhatsApp with pre-filled message
             const whatsappNumber = '263785260818';
