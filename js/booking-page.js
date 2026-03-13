@@ -1,13 +1,10 @@
 /**
- * Haus of Beauty - Standalone Booking Page (6 Steps)
- * Self-contained: no dependency on shop.js
+ * Haus of Beauty - Supreme Touch Style Booking Flow
  */
 
-// --- WhatsApp Configuration ---
-const WHATSAPP_NUMBER = '263785260818';
-
-// --- SERVICE DATA (mirrors shop products + general services) ---
-const services = [
+document.addEventListener("DOMContentLoaded", () => {
+    // --- CATALOG DATA ---
+    const services = [
         // Knotless Braids
         {
             id: 'knotless-xs', name: 'Knotless Extra Small', category: 'Knotless Braids', price: 35, lengths: [
@@ -267,6 +264,35 @@ const services = [
             });
             html += `</div></div>`;
         }
+
+        container.innerHTML = html;
+
+        // Service Selection Listener
+        container.querySelectorAll('.service-option').forEach(el => {
+            el.addEventListener('click', (e) => {
+                if (e.target.closest('.length-option')) return;
+                const id = el.dataset.id;
+                if (bookingState.selectedService?.id === id) return;
+                bookingState.selectedService = services.find(s => s.id === id);
+                bookingState.selectedLength = null;
+                renderServices();
+                updateSummary();
+                updateControls();
+                lucide.createIcons();
+            });
+        });
+
+        // Length Selection Listener
+        container.querySelectorAll('.length-option').forEach(el => {
+            el.addEventListener('click', () => {
+                const lengthName = el.dataset.length;
+                const svcId = el.dataset.svc;
+                const svc = services.find(s => s.id === svcId);
+                const len = svc.lengths.find(l => l.name === lengthName);
+                bookingState.selectedLength = len;
+                bookingState.selectedService = { ...svc, price: len.price, duration: len.duration };
+                renderServices();
+                updateSummary();
                 updateControls();
                 lucide.createIcons();
             });
@@ -513,20 +539,45 @@ const services = [
             nextBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>';
             lucide.createIcons();
 
-            // Create WhatsApp message
-            const message = `*New Booking Request*\n\n*Service:* ${bookingState.selectedService?.name || 'Not selected'}\n*Length:* ${bookingState.selectedLength?.name || 'Not selected'}\n*Date:* ${bookingState.selectedDate || 'TBD'}\n*Time:* ${bookingState.selectedTime || 'TBD'}\n*Add-ons:* ${bookingState.selectedAddons.map(a => a.name).join(', ') || 'None'}\n*Total:* $${bookingState.totalPrice.toFixed(2)}\n*Customer:* ${bookingState.customerInfo.firstName} ${bookingState.customerInfo.lastName}\n*Email:* ${bookingState.customerInfo.email}\n*Phone:* ${bookingState.customerInfo.phone}\n\nPlease confirm this booking.`;
+            // Build WhatsApp message
+            const date = new Date(bookingState.selectedDate).toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+            
+            let message = `*New Booking Request* 📅\n\n`;
+            message += `*Service:* ${bookingState.selectedService.name}\n`;
+            message += `*Length:* ${bookingState.selectedLength.name}\n`;
+            message += `*Duration:* ${bookingState.selectedService.duration}\n`;
+            message += `*Date:* ${date}\n`;
+            message += `*Time:* ${bookingState.selectedTime}\n`;
+            
+            if (bookingState.selectedAddons.length > 0) {
+                message += `\n*Add-ons:*\n`;
+                bookingState.selectedAddons.forEach(a => {
+                    message += `• ${a.name} (+$${a.price})\n`;
+                });
+            }
+            
+            message += `\n*Total:* $${bookingState.totalPrice.toFixed(2)}\n`;
+            message += `*Deposit Required:* $${bookingState.deposit.toFixed(2)}\n`;
+            
+            message += `\n*Customer Details:*\n`;
+            message += `Name: ${bookingState.customerInfo.firstName} ${bookingState.customerInfo.lastName}\n`;
+            message += `Email: ${bookingState.customerInfo.email}\n`;
+            message += `Phone: ${bookingState.customerInfo.phone}\n`;
+            
+            message += `\nPlease confirm this booking. Thank you! ✨`;
 
-            // Encode message for URL
+            // Open WhatsApp with pre-filled message
+            const whatsappNumber = '263785260818';
             const encodedMessage = encodeURIComponent(message);
-
-            // WhatsApp URL
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-            // Redirect to WhatsApp
-            window.open(whatsappUrl, '_blank');
-
-            // Show success message
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
             setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
                 goToStep('success');
             }, 1000);
         } else {
