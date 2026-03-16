@@ -215,7 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
             email: '',
             phone: ''
         },
-        totalPrice: 0
+        totalPrice: 0,
+        deposit: 20
     };
 
     // --- DOM ELEMENTS ---
@@ -231,6 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sumDateTime = document.getElementById('sumDateTime');
     const sumAddonsList = document.getElementById('sumAddonsList');
     const sumTotal = document.getElementById('sumTotal');
+    const sumDeposit = document.getElementById('sumDeposit');
 
     // --- INITIALIZATION ---
     function init() {
@@ -555,44 +557,43 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSummary() {
         // Service
         if (bookingState.selectedService) {
-            if (sumServiceName) sumServiceName.textContent = bookingState.selectedService.name;
-            if (sumServiceDuration) sumServiceDuration.textContent = bookingState.selectedService.duration;
+            sumServiceName.textContent = bookingState.selectedService.name;
+            sumServiceDuration.textContent = bookingState.selectedService.duration;
             bookingState.totalPrice = bookingState.selectedService.price;
         }
 
         // Date/Time
         if (bookingState.selectedDate && bookingState.selectedTime) {
             const date = new Date(bookingState.selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            if (sumDateTime) sumDateTime.textContent = `${date} @ ${bookingState.selectedTime}`;
+            sumDateTime.textContent = `${date} @ ${bookingState.selectedTime}`;
         } else if (bookingState.selectedTime) {
-            if (sumDateTime) sumDateTime.textContent = `TBD @ ${bookingState.selectedTime}`;
+            sumDateTime.textContent = `TBD @ ${bookingState.selectedTime}`;
         } else {
-            if (sumDateTime) sumDateTime.textContent = '--';
+            sumDateTime.textContent = '--';
         }
 
         // Add-ons
         if (bookingState.selectedAddons.length > 0) {
-            if (sumAddonsList) {
-                sumAddonsList.classList.remove('hidden');
-                const addonPrice = bookingState.selectedAddons.reduce((sum, a) => sum + a.price, 0);
-                bookingState.totalPrice += addonPrice;
+            sumAddonsList.classList.remove('hidden');
+            const addonPrice = bookingState.selectedAddons.reduce((sum, a) => sum + a.price, 0);
+            bookingState.totalPrice += addonPrice;
 
-                sumAddonsList.innerHTML = `
-                    <div class="text-brand-muted text-xs uppercase tracking-widest mb-1">Add-ons</div>
-                    ${bookingState.selectedAddons.map(a => `
-                        <div class="flex justify-between text-[11px] text-brand-text font-light">
-                            <span>${a.name}</span>
-                            <span>+$${a.price}</span>
-                        </div>
-                    `).join('')}
-                `;
-            }
+            sumAddonsList.innerHTML = `
+                <div class="text-brand-muted text-xs uppercase tracking-widest mb-1">Add-ons</div>
+                ${bookingState.selectedAddons.map(a => `
+                    <div class="flex justify-between text-[11px] text-brand-text font-light">
+                        <span>${a.name}</span>
+                        <span>+$${a.price}</span>
+                    </div>
+                `).join('')}
+            `;
         } else {
-            if (sumAddonsList) sumAddonsList.classList.add('hidden');
+            sumAddonsList.classList.add('hidden');
         }
 
         // Totals
-        if (sumTotal) sumTotal.textContent = `$${bookingState.totalPrice.toFixed(2)}`;
+        sumTotal.textContent = `$${bookingState.totalPrice.toFixed(2)}`;
+        sumDeposit.textContent = `$${bookingState.deposit.toFixed(2)}`;
     }
 
     // --- EVENT LISTENERS ---
@@ -613,9 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let message = `*New Booking Request* 📅\n\n`;
             message += `*Service:* ${bookingState.selectedService.name}\n`;
-            if (bookingState.selectedLength) {
-                message += `*Length:* ${bookingState.selectedLength.name}\n`;
-            }
+            message += `*Length:* ${bookingState.selectedLength.name}\n`;
             message += `*Duration:* ${bookingState.selectedService.duration}\n`;
             message += `*Date:* ${date}\n`;
             message += `*Time:* ${bookingState.selectedTime}\n`;
@@ -628,6 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             message += `\n*Total:* $${bookingState.totalPrice.toFixed(2)}\n`;
+            message += `*Deposit Required:* $${bookingState.deposit.toFixed(2)}\n`;
             
             message += `\n*Customer Details:*\n`;
             message += `Name: ${bookingState.customerInfo.firstName} ${bookingState.customerInfo.lastName}\n`;
