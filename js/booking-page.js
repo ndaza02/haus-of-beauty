@@ -134,13 +134,69 @@ document.addEventListener("DOMContentLoaded", () => {
                 { name: 'Knee', price: 65, duration: '6-8 hrs' }
             ]
         },
+        // Hair Treatments
+        {
+            id: 'wash', name: 'Wash', category: 'Hair Treatments', price: 5, duration: '30 min'
+        },
+        {
+            id: 'oil-treatment', name: 'Oil Treatment', category: 'Hair Treatments', price: 10, duration: '1 hour'
+        },
+        {
+            id: 'retouch-dark', name: 'Retouch (Dark n Lovely)', category: 'Hair Treatments', price: 20, duration: '1 hour'
+        },
+        {
+            id: 'retouch-gel', name: 'Retouch + Gel Up', category: 'Hair Treatments', price: 30, duration: '2 hours'
+        },
+        {
+            id: 'blowout', name: 'Blow Out', category: 'Hair Treatments', price: 15, duration: '45 min'
+        },
+        // Wig Installations
+        {
+            id: 'install-basic', name: 'Installation (Basic)', category: 'Wig Installations', price: 25, duration: '1h 30min'
+        },
+        {
+            id: 'install-styling', name: 'Installation + Styling', category: 'Wig Installations', price: 35, duration: '2 hours'
+        },
+        {
+            id: 'install-dramatic', name: 'Installation + Dramatic Styling', category: 'Wig Installations', price: 40, duration: '2h 10min'
+        },
+        {
+            id: 'widows-peak', name: 'Widows Peak Install', category: 'Wig Installations', price: 40, duration: '2h 30min'
+        },
+        {
+            id: 'widows-peak-styling', name: 'Widow Peak Install + Styling', category: 'Wig Installations', price: 50, duration: '2h 45min'
+        },
+        {
+            id: '360-lace', name: '360 Lace Wig', category: 'Wig Installations', price: 40, duration: '2h 30min'
+        },
+        {
+            id: 'frontal-replace', name: 'Frontal Replacement', category: 'Wig Installations', price: 15, duration: '30-40 min'
+        },
+        {
+            id: 'traditional-sew', name: 'Traditional Leave Out Sew In', category: 'Wig Installations', price: 25, duration: '1 hour'
+        },
+        {
+            id: 'frontal-sew', name: 'Frontal Sew In', category: 'Wig Installations', price: 30, duration: '2 hours'
+        },
+        // Bridal Packages
+        {
+            id: 'bridal-basic', name: 'Bridal - Basic', category: 'Bridal Packages', price: 80, duration: '2 hours', description: 'Wig install, customization, basic styling, curls, crimps'
+        },
+        {
+            id: 'bridal-standard', name: 'Bridal - Standard', category: 'Bridal Packages', price: 100, duration: '2h 30min', description: 'Wig install, customization, custom styling (bun), hair accessory'
+        },
+        {
+            id: 'bridal-luxury', name: 'Bridal - Luxury', category: 'Bridal Packages', price: 130, duration: '2+ hours', description: 'Full luxury package with all extras'
+        },
     ];
 
     const addons = [
-        { id: 'wash', name: 'Luxury Wash & Condition', price: 15 },
+        { id: 'wash-addon', name: 'Wash', price: 5 },
         { id: 'detangle', name: 'Extra Detangling', price: 10 },
         { id: 'length-xtra', name: 'Extra Length (Waist)', price: 20 },
-        { id: 'hair-curl', name: 'Curly Ends', price: 10 },
+        { id: 'hair-curl', name: 'Curls', price: 10 },
+        { id: 'crimps', name: 'Crimps', price: 10 },
+        { id: 'layers', name: 'Layers', price: 15 },
     ];
 
     const timeSlots = ["09:00 AM", "10:30 AM", "12:00 PM", "01:30 PM", "03:00 PM", "04:30 PM"];
@@ -234,18 +290,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="space-y-3">`;
             catServices.forEach(svc => {
                 const isSelected = bookingState.selectedService?.id === svc.id;
+                const hasLengths = svc.lengths && svc.lengths.length > 0;
                 html += `
                 <div class="service-option bg-brand-surface border ${isSelected ? 'border-brand-gold ring-1 ring-brand-gold' : 'border-brand-border'} rounded-xl p-5 cursor-pointer hover:border-brand-gold transition-all group relative overflow-hidden" data-id="${svc.id}">
                     ${svc.popular ? '<div class="absolute top-0 right-0 bg-brand-gold text-brand-bg text-[8px] uppercase tracking-tighter font-bold px-2 py-1 rounded-bl-lg">Popular</div>' : ''}
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="font-heading text-lg group-hover:text-brand-gold transition-colors">${svc.name}</h3>
-                        <span class="text-brand-gold font-bold text-sm">from $${svc.price}</span>
+                        <span class="text-brand-gold font-bold text-sm">${hasLengths ? 'from' : ''} $${svc.price}</span>
                     </div>
                     <div class="flex items-center gap-3 text-brand-muted text-[10px] uppercase tracking-wider">
                         <span class="flex items-center gap-1"><i data-lucide="tag" class="w-3 h-3"></i> ${svc.category}</span>
-                        <span class="flex items-center gap-1"><i data-lucide="ruler" class="w-3 h-3"></i> 5 lengths</span>
+                        ${hasLengths ? `<span class="flex items-center gap-1"><i data-lucide="ruler" class="w-3 h-3"></i> ${svc.lengths.length} lengths</span>` : `<span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> ${svc.duration}</span>`}
                     </div>
-                    ${isSelected && svc.lengths ? `
+                    ${svc.description ? `<p class="text-xs text-brand-muted mt-2">${svc.description}</p>` : ''}
+                    ${isSelected && hasLengths ? `
                     <div class="mt-4 pt-4 border-t border-brand-border length-picker">
                         <p class="text-xs text-brand-muted mb-2 font-medium">Select Length:</p>
                         <div class="grid grid-cols-1 gap-2">
@@ -400,8 +458,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function validateStep(step) {
         switch (step) {
             case 1:
-                if (!bookingState.selectedService || !bookingState.selectedLength) {
-                    alert('Please select a service and a length.');
+                if (!bookingState.selectedService) {
+                    alert('Please select a service.');
+                    return false;
+                }
+                // Only require length if service has length options
+                if (bookingState.selectedService.lengths && bookingState.selectedService.lengths.length > 0 && !bookingState.selectedLength) {
+                    alert('Please select a length.');
                     return false;
                 }
                 return true;
@@ -483,7 +546,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Disable Continue if no service selected on step 1
         if (bookingState.currentStep === 1) {
-            nextBtn.disabled = bookingState.selectedService === null;
+            const hasLengths = bookingState.selectedService?.lengths && bookingState.selectedService.lengths.length > 0;
+            const needsLength = hasLengths && !bookingState.selectedLength;
+            nextBtn.disabled = !bookingState.selectedService || needsLength;
         } else {
             nextBtn.disabled = false;
         }
