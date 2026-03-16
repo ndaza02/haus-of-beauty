@@ -555,42 +555,44 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSummary() {
         // Service
         if (bookingState.selectedService) {
-            sumServiceName.textContent = bookingState.selectedService.name;
-            sumServiceDuration.textContent = bookingState.selectedService.duration;
+            if (sumServiceName) sumServiceName.textContent = bookingState.selectedService.name;
+            if (sumServiceDuration) sumServiceDuration.textContent = bookingState.selectedService.duration;
             bookingState.totalPrice = bookingState.selectedService.price;
         }
 
         // Date/Time
         if (bookingState.selectedDate && bookingState.selectedTime) {
             const date = new Date(bookingState.selectedDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-            sumDateTime.textContent = `${date} @ ${bookingState.selectedTime}`;
+            if (sumDateTime) sumDateTime.textContent = `${date} @ ${bookingState.selectedTime}`;
         } else if (bookingState.selectedTime) {
-            sumDateTime.textContent = `TBD @ ${bookingState.selectedTime}`;
+            if (sumDateTime) sumDateTime.textContent = `TBD @ ${bookingState.selectedTime}`;
         } else {
-            sumDateTime.textContent = '--';
+            if (sumDateTime) sumDateTime.textContent = '--';
         }
 
         // Add-ons
         if (bookingState.selectedAddons.length > 0) {
-            sumAddonsList.classList.remove('hidden');
-            const addonPrice = bookingState.selectedAddons.reduce((sum, a) => sum + a.price, 0);
-            bookingState.totalPrice += addonPrice;
+            if (sumAddonsList) {
+                sumAddonsList.classList.remove('hidden');
+                const addonPrice = bookingState.selectedAddons.reduce((sum, a) => sum + a.price, 0);
+                bookingState.totalPrice += addonPrice;
 
-            sumAddonsList.innerHTML = `
-                <div class="text-brand-muted text-xs uppercase tracking-widest mb-1">Add-ons</div>
-                ${bookingState.selectedAddons.map(a => `
-                    <div class="flex justify-between text-[11px] text-brand-text font-light">
-                        <span>${a.name}</span>
-                        <span>+$${a.price}</span>
-                    </div>
-                `).join('')}
-            `;
+                sumAddonsList.innerHTML = `
+                    <div class="text-brand-muted text-xs uppercase tracking-widest mb-1">Add-ons</div>
+                    ${bookingState.selectedAddons.map(a => `
+                        <div class="flex justify-between text-[11px] text-brand-text font-light">
+                            <span>${a.name}</span>
+                            <span>+$${a.price}</span>
+                        </div>
+                    `).join('')}
+                `;
+            }
         } else {
-            sumAddonsList.classList.add('hidden');
+            if (sumAddonsList) sumAddonsList.classList.add('hidden');
         }
 
         // Totals
-        sumTotal.textContent = `$${bookingState.totalPrice.toFixed(2)}`;
+        if (sumTotal) sumTotal.textContent = `$${bookingState.totalPrice.toFixed(2)}`;
     }
 
     // --- EVENT LISTENERS ---
