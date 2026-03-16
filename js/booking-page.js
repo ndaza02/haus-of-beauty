@@ -611,7 +611,9 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let message = `*New Booking Request* 📅\n\n`;
             message += `*Service:* ${bookingState.selectedService.name}\n`;
-            message += `*Length:* ${bookingState.selectedLength.name}\n`;
+            if (bookingState.selectedLength) {
+                message += `*Length:* ${bookingState.selectedLength.name}\n`;
+            }
             message += `*Duration:* ${bookingState.selectedService.duration}\n`;
             message += `*Date:* ${date}\n`;
             message += `*Time:* ${bookingState.selectedTime}\n`;
