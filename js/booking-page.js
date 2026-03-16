@@ -215,8 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
             email: '',
             phone: ''
         },
-        totalPrice: 0,
-        deposit: 20
+        totalPrice: 0
     };
 
     // --- DOM ELEMENTS ---
@@ -232,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const sumDateTime = document.getElementById('sumDateTime');
     const sumAddonsList = document.getElementById('sumAddonsList');
     const sumTotal = document.getElementById('sumTotal');
-    const sumDeposit = document.getElementById('sumDeposit');
 
     // --- INITIALIZATION ---
     function init() {
@@ -593,7 +591,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Totals
         sumTotal.textContent = `$${bookingState.totalPrice.toFixed(2)}`;
-        sumDeposit.textContent = `$${bookingState.deposit.toFixed(2)}`;
     }
 
     // --- EVENT LISTENERS ---
@@ -627,7 +624,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             message += `\n*Total:* $${bookingState.totalPrice.toFixed(2)}\n`;
-            message += `*Deposit Required:* $${bookingState.deposit.toFixed(2)}\n`;
             
             message += `\n*Customer Details:*\n`;
             message += `Name: ${bookingState.customerInfo.firstName} ${bookingState.customerInfo.lastName}\n`;
