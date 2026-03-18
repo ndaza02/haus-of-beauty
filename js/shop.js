@@ -271,5 +271,5 @@ function handleCheckout() {
     message += `%0A*Total: $${total.toFixed(2)}*%0A%0APlease let me know the availability and payment options!`;
 
     const whatsappUrl = `https://wa.me/263785260818?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    window.location.href = whatsappUrl;
 }

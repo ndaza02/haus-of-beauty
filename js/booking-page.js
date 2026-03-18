@@ -644,7 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
             
             setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
+                window.location.href = whatsappUrl;
                 goToStep('success');
             }, 1000);
         } else {
